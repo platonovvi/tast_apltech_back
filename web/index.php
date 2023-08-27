@@ -9,4 +9,9 @@ require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
 
 $config = require __DIR__ . '/../config/web.php';
 
+header("Access-Control-Allow-Origin: https://tranquil-island-01847-9479261fef91.herokuapp.com");
+header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+
 (new yii\web\Application($config))->run();
+
