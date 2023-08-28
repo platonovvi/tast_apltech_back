@@ -46,7 +46,15 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => getenv('DATABASE_URL'),
+            'charset' => 'utf8',
+            'enableSchemaCache' => true, // Это может улучшить производительность, но отключите для дебага
+            'on afterOpen' => function ($event) {
+                Yii::info('Connected to the database!');
+            },
+        ],
 
         'urlManager' => [
             'enablePrettyUrl' => true,
