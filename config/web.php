@@ -47,8 +47,16 @@ $config = [
             ],
         ],
         'db' => $db,
+
         'response' => [
             'class' => 'yii\web\Response',
+            'on beforeSend' => function ($event) {
+                // Добавляем заголовки CORS
+                $headers = $event->sender->headers;
+                $headers->set('Access-Control-Allow-Origin', 'https://tranquil-island-01847-9479261fef91.herokuapp.com/');
+                $headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+                $headers->set('Access-Control-Allow-Headers', 'Authorization, Content-Type');
+            },
         ],
 
         'urlManager' => [
