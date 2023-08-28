@@ -44,13 +44,6 @@ $config = [
         'db' => $db,
         'response' => [
             'class' => 'yii\web\Response',
-            'on beforeSend' => function ($event) {
-                $response = $event->sender;
-                $response->headers->add('Access-Control-Allow-Origin', 'https://tranquil-island-01847-9479261fef91.herokuapp.com');
-                $response->headers->add('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-                $response->headers->add('Access-Control-Allow-Headers', 'Authorization, Content-Type');
-                $response->headers->add('Access-Control-Allow-Credentials', 'true');
-            },
         ],
         'request' => [
             // Включаем обработку CORS для определенных действий
