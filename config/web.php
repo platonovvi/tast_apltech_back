@@ -48,17 +48,6 @@ $config = [
         ],
         'db' => $db,
 
-        'response' => [
-            'class' => 'yii\web\Response',
-            'on beforeSend' => function ($event) {
-                // Добавляем заголовки CORS
-                $headers = $event->sender->headers;
-                $headers->set('Access-Control-Allow-Origin', 'https://tranquil-island-01847-9479261fef91.herokuapp.com/');
-                $headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-                $headers->set('Access-Control-Allow-Headers', 'Authorization, Content-Type');
-            },
-        ],
-
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -69,6 +58,15 @@ $config = [
 
     ],
     'params' => $params,
+    'as corsFilter' => [
+        'class' => Cors::class,
+        'cors' => [
+            'Origin' => ['https://tranquil-island-01847-9479261fef91.herokuapp.com'], // Замените на домен вашего Vue приложения
+            'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+            'Access-Control-Request-Headers' => ['Authorization', 'Content-Type'],
+            'Access-Control-Allow-Credentials' => true,
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
