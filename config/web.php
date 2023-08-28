@@ -59,15 +59,6 @@ $config = [
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
             ],
-            'cors' => [
-                'class' => Cors::class,
-                'corsOptions' => [
-                    'Origin' => ['https://tranquil-island-01847-9479261fef91.herokuapp.com'],
-                    'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-                    'Access-Control-Request-Headers' => ['*'],
-                    'Access-Control-Allow-Credentials' => true,
-                ],
-            ],
         ],
 
         'urlManager' => [
