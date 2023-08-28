@@ -1,5 +1,7 @@
 <?php
+
 use yii\filters\Cors;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -9,7 +11,7 @@ $config = [
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
         'request' => [
@@ -49,6 +51,23 @@ $config = [
                 $response->headers->add('Access-Control-Allow-Headers', 'Authorization, Content-Type');
                 $response->headers->add('Access-Control-Allow-Credentials', 'true');
             },
+        ],
+        'request' => [
+            // Включаем обработку CORS для определенных действий
+            'class' => 'yii\web\Request',
+            'enableCsrfValidation' => false,
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
+            'cors' => [
+                'class' => Cors::class,
+                'corsOptions' => [
+                    'Origin' => ['https://tranquil-island-01847-9479261fef91.herokuapp.com'],
+                    'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+                    'Access-Control-Request-Headers' => ['*'],
+                    'Access-Control-Allow-Credentials' => true,
+                ],
+            ],
         ],
         /*
         'urlManager' => [
