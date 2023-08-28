@@ -16,6 +16,11 @@ $config = [
     'components' => [
         'request' => [
             'cookieValidationKey' => 'vvPB--SLcGS3ZUHxk18vSY_6hNbg75J8',
+            'class' => 'yii\web\Request',
+            'enableCsrfValidation' => false,
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -44,14 +49,6 @@ $config = [
         'db' => $db,
         'response' => [
             'class' => 'yii\web\Response',
-        ],
-        'request' => [
-            // Включаем обработку CORS для определенных действий
-            'class' => 'yii\web\Request',
-            'enableCsrfValidation' => false,
-            'parsers' => [
-                'application/json' => 'yii\web\JsonParser',
-            ],
         ],
 
         'urlManager' => [
