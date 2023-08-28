@@ -18,7 +18,7 @@ class SiteController extends Controller
 
         // Ваша логика обработки запроса
 
-        return ['message' => 'Success'];
+        return 1232364;
     }
     /**
      * {@inheritdoc}
