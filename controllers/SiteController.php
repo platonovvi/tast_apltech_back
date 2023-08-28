@@ -12,6 +12,14 @@ use app\models\ContactForm;
 
 class SiteController extends Controller
 {
+    public function actionEndpoint()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        // Ваша логика обработки запроса
+
+        return ['message' => 'Success'];
+    }
     /**
      * {@inheritdoc}
      */

@@ -69,14 +69,15 @@ $config = [
                 ],
             ],
         ],
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'api/endpoint' => 'api/endpoint',
             ],
         ],
-        */
+
     ],
     'params' => $params,
 ];
