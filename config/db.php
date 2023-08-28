@@ -7,6 +7,7 @@ return [
     // Дополнительные настройки, если необходимо
     'on afterOpen' => function ($event) {
         // Вы можете добавить дополнительные действия после установки соединения
+        Yii::info('Database connection successful.', 'application');
     },
     'schemaMap' => [
         'pgsql' => [
