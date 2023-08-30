@@ -22,6 +22,17 @@ $config = [
                 'application/json' => 'yii\web\JsonParser',
             ],
         ],
+        'response' => [
+            'format' => yii\web\Response::FORMAT_JSON,
+            'charset' => 'UTF-8',
+            'on beforeSend' => function ($event) {
+                $response = $event->sender;
+                $response->headers->add('Access-Control-Allow-Origin', 'https://tranquil-island-01847-9479261fef91.herokuapp.com');
+                $response->headers->add('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+                $response->headers->add('Access-Control-Allow-Headers', '*');
+                $response->headers->add('Access-Control-Allow-Credentials', 'true');
+            },
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -64,16 +75,6 @@ $config = [
             'rules' => [
                 'api/endpoint' => 'api/endpoint',
                 'user/get-users' => 'user/get-users',
-            ],
-        ],
-        'corsFilter' => [
-            'class' => \yii\filters\Cors::class,
-            'cors' => [
-                'Origin' => ['https://tranquil-island-01847-9479261fef91.herokuapp.com'],
-                'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-                'Access-Control-Request-Headers' => ['*'],
-                'Access-Control-Allow-Credentials' => true,
-                'Access-Control-Max-Age' => 86400,
             ],
         ],
     ],
