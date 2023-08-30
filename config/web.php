@@ -25,7 +25,7 @@ $config = [
         'response' => [
             'format' => yii\web\Response::FORMAT_JSON,
             'charset' => 'UTF-8',
-            'on beforeSend' => function ($event) {
+            /*'on beforeSend' => function ($event) {
                 $response = $event->sender;
                 $origin = 'https://tranquil-island-01847-9479261fef91.herokuapp.com';
 
@@ -38,7 +38,7 @@ $config = [
                 $response->headers->add('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
                 $response->headers->add('Access-Control-Allow-Headers', '*');
                 $response->headers->add('Access-Control-Allow-Credentials', 'true');
-            },
+            },*/
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
