@@ -49,8 +49,10 @@ $config = [
         'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => getenv('DATABASE_URL'),
+            'username' => getenv('DB_USERNAME'),
+            'password' => getenv('DB_PASSWORD'),
             'charset' => 'utf8',
-            'enableSchemaCache' => true, // Это может улучшить производительность, но отключите для дебага
+            'enableSchemaCache' => true,
             'on afterOpen' => function ($event) {
                 Yii::info('Connected to the database!');
             },
@@ -61,6 +63,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'api/endpoint' => 'api/endpoint',
+                'POST user/get-users' => 'user/get-users',
             ],
         ],
 
