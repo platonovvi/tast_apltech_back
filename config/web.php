@@ -27,7 +27,14 @@ $config = [
             'charset' => 'UTF-8',
             'on beforeSend' => function ($event) {
                 $response = $event->sender;
-                $response->headers->add('Access-Control-Allow-Origin', 'https://tranquil-island-01847-9479261fef91.herokuapp.com');
+                $origin = 'https://tranquil-island-01847-9479261fef91.herokuapp.com';
+
+                // Проверяем, есть ли уже заголовок в ответе
+                if (!$response->headers->has('Access-Control-Allow-Origin')) {
+                    $response->headers->add('Access-Control-Allow-Origin', $origin);
+                }
+
+                // Добавляем остальные заголовки
                 $response->headers->add('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
                 $response->headers->add('Access-Control-Allow-Headers', '*');
                 $response->headers->add('Access-Control-Allow-Credentials', 'true');
