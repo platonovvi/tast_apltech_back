@@ -73,7 +73,6 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'api/endpoint' => 'api/endpoint',
                 'user/get-users' => 'user/get-users',
             ],
         ],
