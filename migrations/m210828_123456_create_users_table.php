@@ -17,7 +17,7 @@ class m210828_123456_create_users_table extends Migration
             'username' => $this->string()->notNull(),
             'password' => $this->string()->notNull(),
             'created_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
-            'updated_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+            'updated_at' => $this->timestamp(),
         ]);
     }
 
