@@ -66,18 +66,17 @@ $config = [
                 'user/get-users' => 'user/get-users',
             ],
         ],
-
-    ],
-    'params' => $params,
-    'corsFilter' => [
-        'class' => \yii\filters\Cors::class,
-        'cors' => [
-            'Origin' => ['https://tranquil-island-01847-9479261fef91.herokuapp.com'],
-            'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
-            'Access-Control-Request-Headers' => ['*'],
-            'Access-Control-Allow-Credentials' => true,
+        'corsFilter' => [
+            'class' => \yii\filters\Cors::class,
+            'cors' => [
+                'Origin' => ['https://tranquil-island-01847-9479261fef91.herokuapp.com'],
+                'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
+                'Access-Control-Request-Headers' => ['*'],
+                'Access-Control-Allow-Credentials' => true,
+            ],
         ],
     ],
+    'params' => $params,
 ];
 
 if (YII_ENV_DEV) {
