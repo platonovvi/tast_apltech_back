@@ -7,4 +7,5 @@ return [
     'on afterOpen' => function ($event) {
         Yii::info('Database connection successful.', 'application');
     },
+    'enableSchemaCache' => true,
 ];
