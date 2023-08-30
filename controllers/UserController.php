@@ -11,6 +11,7 @@ class UserController extends Controller
 {
     public function actionGetUsers()
     {
+        dd(123123);
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $users = User::find()->all();
