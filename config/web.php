@@ -70,12 +70,14 @@ $config = [
     ],
     'params' => $params,
     'as corsFilter' => [
-        'class' => Cors::class,
+        'class' => \yii\filters\Cors::class,
         'cors' => [
             'Origin' => ['https://tranquil-island-01847-9479261fef91.herokuapp.com'],
             'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
             'Access-Control-Request-Headers' => ['Authorization', 'Content-Type'],
             'Access-Control-Allow-Credentials' => true,
+            'Access-Control-Max-Age' => 86400, // Кеш предварительных запросов на 24 часа
+            'Access-Control-Expose-Headers' => [], // Здесь можно перечислить дополнительные заголовки
         ],
     ],
 ];
