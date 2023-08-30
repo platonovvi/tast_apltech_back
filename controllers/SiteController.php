@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use Yii;
-use yii\web\Controller as BaseController;
-class SiteController extends BaseController
+use yii\web\Controller;
+class SiteController extends Controller
 {
     public function actionHello()
     {
