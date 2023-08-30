@@ -77,14 +77,14 @@ $config = [
             },
         ],
 
-        'urlManager' => [
+        /*'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
                 'getusers' => 'site/index',
                 '/' => 'site/index',
             ],
-        ],
+        ],*/
     ],
     'params' => $params,
 ];
