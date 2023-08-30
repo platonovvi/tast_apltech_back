@@ -72,7 +72,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'api/endpoint' => 'api/endpoint',
-                'user/get-users' => 'user/get-users',
+                'POST user/get-users' => 'user/get-users',
             ],
         ],
     ],
