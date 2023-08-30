@@ -3,7 +3,8 @@
 namespace app\controllers;
 
 use Yii;
-class SiteController extends Controller
+use yii\web\Controller as BaseController;
+class SiteController extends BaseController
 {
     public function actionIndex()
     {
