@@ -63,7 +63,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'api/endpoint' => 'api/endpoint',
-                'POST user/get-users' => 'user/get-users',
+                'user/get-users' => 'user/get-users',
             ],
         ],
         'corsFilter' => [
