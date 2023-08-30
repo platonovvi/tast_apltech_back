@@ -10,9 +10,10 @@ class UserController extends Controller
 {
     public function actionGet_All()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $this->render('index');
+        /*Yii::$app->response->format = Response::FORMAT_JSON;
 
         $users = User::find()->asArray()->all();
-        return $this->asJson($users);
+        return $this->asJson($users);*/
     }
 }

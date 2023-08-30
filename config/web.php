@@ -80,7 +80,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'user/get_all' => '/user/get_all',
+                'user/get_all' => 'user/get_all',
                 '/' => 'site/index',
             ],
         ],
