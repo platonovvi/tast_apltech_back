@@ -25,6 +25,7 @@ class UserController extends Controller
             ],
         ];
     }
+
     public function actionGetUsers()
     {
         error_log("actionGetUsers method called");
@@ -32,5 +33,10 @@ class UserController extends Controller
 
         $users = User::find()->asArray()->all();
         return $users;
+    }
+
+    public function actionIndex()
+    {
+        return $this->render('index'); // Возвращаем представление для действия index
     }
 }

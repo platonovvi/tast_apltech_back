@@ -74,7 +74,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '/' => 'site/index',
-                '/user/get_all' => 'site/index',
+                '/user/get_all' => 'user/index',
             ],
         ],
     ],
