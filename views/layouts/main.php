@@ -5,12 +5,12 @@
 /** @var string $content */
 
 use app\assets\AppAsset;
+use app\assets\CustomBootstrapAsset;
 use app\widgets\Alert;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
-use yii\bootstrap5\BootstrapAsset;
 
 AppAsset::register($this);
 
@@ -27,7 +27,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <head>
     <title><?= Html::encode($this->title) ?></title>
     <?php
-    BootstrapAsset::register($this);
+    CustomBootstrapAsset::register($this);
     $this->head() ?>
 </head>
 <body class="d-flex flex-column h-100">
