@@ -56,10 +56,10 @@ $config = [
                 'yii\web\JqueryAsset' => false, // Отключаем стандартный JqueryAsset
                 'yii\bootstrap5\BootstrapAsset' => false, // Отключаем стандартный BootstrapAsset
             ],
-            'aliases' => [
-                '@bower/bootstrap' => '@vendor/bower-asset/bootstrap',
-            ],
         ],
+    ],
+    'aliases' => [
+        '@bower/bootstrap' => '@vendor/bower-asset/bootstrap',
     ],
     'params' => $params,
 ];
