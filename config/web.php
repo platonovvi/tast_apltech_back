@@ -1,38 +1,44 @@
 <?php
-return [
+
+$params = require __DIR__ . '/params.php';
+
+$config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
+    'bootstrap' => ['log'],
     'components' => [
         'request' => [
             'cookieValidationKey' => 'vvPB--SLcGS3ZUHxk18vSY_6hNbg75J8',
         ],
+        'response' => [
+            'format' => yii\web\Response::FORMAT_JSON, // Установите формат ответа на JSON
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => getenv('DATABASE_URL'),
+            'username' => getenv('DB_USERNAME'),
+            'password' => getenv('DB_PASSWORD'),
+            'charset' => 'utf8',
+            'enableSchemaCache' => true,
+            'on afterOpen' => function ($event) {
+                Yii::info('Connected to the database!');
+            },
         ],
-        'errorHandler' => [
-            'errorAction' => 'site/error',
-        ],
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => true,
-        ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
-        ],
-        'db' => require __DIR__ . '/db.php',
+        // ... Другие компоненты ...
     ],
-    'params' => require __DIR__ . '/params.php',
+    'params' => $params,
 ];
+
+if (YII_ENV_DEV) {
+    // Конфигурация для разработки
+} else {
+    // Конфигурация для продакшена
+}
+
+return $config;
 /*$params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
