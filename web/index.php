@@ -7,6 +7,8 @@ ini_set('display_errors', 'On');
 ini_set('display_startup_errors', 'On');
 error_reporting(E_ALL);
 
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
 $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
 $domain = $_SERVER['HTTP_HOST'];
 $port = $_SERVER['SERVER_PORT'];
@@ -16,11 +18,9 @@ if (($protocol === 'http' && $port != 80) || ($protocol === 'https' && $port != 
     $baseUrl .= ':' . $port;
 }
 
-error_log('Root URL: ' . $baseUrl); // Запись в лог
+$logFile = __DIR__ . '/../logs/root_url.log'; // Укажите путь к файлу лога
 
-require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
-
+error_log('Root URL: ' . $baseUrl, 3, $logFile);
 $config = require __DIR__ . '/../config/web.php';
 
 (new yii\web\Application($config))->run();
