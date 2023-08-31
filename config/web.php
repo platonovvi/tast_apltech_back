@@ -61,7 +61,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'getusers' => 'user/getusers',
+                'getusers' => 'user/get-users',
                 '/' => 'site/index',
             ],
         ],
