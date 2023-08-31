@@ -5,10 +5,10 @@ $params = require __DIR__ . '/params.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    //'bootstrap' => ['log'],
     'components' => [
         'request' => [
-            'cookieValidationKey' => 'vvPB--SLcGS3ZUHxk18vSY_6hNbg75J8',
+            'cookieValidationKey' => 'your-random-key-here',
         ],
         'response' => [
             //'format' => yii\web\Response::FORMAT_JSON,
@@ -45,6 +45,11 @@ $config = [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
+            ],
+        ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => false,
             ],
         ],
     ],
