@@ -1,11 +1,11 @@
 <?php
-use yii\bootstrap5\BootstrapAsset;
+
 $params = require __DIR__ . '/params.php';
 
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    //'bootstrap' => ['log'],
+    'bootstrap' => ['log'],
     'components' => [
         'request' => [
             'cookieValidationKey' => 'your-random-key-here',
@@ -53,11 +53,8 @@ $config = [
         ],
         'assetManager' => [
             'bundles' => [
-                'yii\web\JqueryAsset' => false,
-                'yii\bootstrap5\BootstrapAsset' => [
-                    'sourcePath' => null,
-                    'css' => [],
-                ],
+                'yii\web\JqueryAsset' => false, // Отключаем стандартный JqueryAsset
+                'yii\bootstrap\BootstrapAsset' => false, // Отключаем стандартный BootstrapAsset
             ],
         ],
     ],
