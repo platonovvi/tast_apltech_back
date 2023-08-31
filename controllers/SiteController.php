@@ -12,7 +12,8 @@ class SiteController extends BaseController
 {
     public function actionIndex()
     {
-        Yii::info('Метод actionIndex() был вызван.');
-        return $this->render('index'); // Возвращаем представление для действия index
+        $content = 'Content';
+        return $this->renderContent($content);
+        //return $this->render('index'); // Возвращаем представление для действия index
     }
 }
