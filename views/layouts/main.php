@@ -6,11 +6,11 @@
 
 use app\assets\AppAsset;
 use app\widgets\Alert;
-use yii\bootstrap\Breadcrumbs;
-use yii\bootstrap\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\bootstrap\BootstrapAsset;
+use yii\bootstrap5\Breadcrumbs;
+use yii\bootstrap5\Html;
+use yii\bootstrap5\Nav;
+use yii\bootstrap5\NavBar;
+use yii\bootstrap5\BootstrapAsset;
 
 AppAsset::register($this);
 

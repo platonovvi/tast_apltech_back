@@ -54,7 +54,7 @@ $config = [
         'assetManager' => [
             'bundles' => [
                 'yii\web\JqueryAsset' => false, // Отключаем стандартный JqueryAsset
-                'yii\bootstrap\BootstrapAsset' => false, // Отключаем стандартный BootstrapAsset
+                'yii\bootstrap5\BootstrapAsset' => false, // Отключаем стандартный BootstrapAsset
             ],
         ],
     ],
