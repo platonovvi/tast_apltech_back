@@ -22,7 +22,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 //'users' => 'user/get-users',
-                '' => 'site/index',
+                '/' => 'site/index',
             ],
         ],
         /*'db' => [
