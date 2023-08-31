@@ -1,5 +1,5 @@
 <?php
-
+use yii\bootstrap5\BootstrapAsset;
 $params = require __DIR__ . '/params.php';
 
 $config = [
@@ -55,7 +55,7 @@ $config = [
             'bundles' => [
                 'yii\web\JqueryAsset' => false,
                 'yii\bootstrap5\BootstrapAsset' => [
-                    'sourcePath' => null, // Отключаем стандартный BootstrapAsset
+                    'sourcePath' => null,
                     'css' => [],
                 ],
             ],
