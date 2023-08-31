@@ -10,6 +10,7 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
+use yii\bootstrap5\BootstrapAsset;
 
 AppAsset::register($this);
 
@@ -25,7 +26,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
     <title><?= Html::encode($this->title) ?></title>
-    <?php \yii\bootstrap5\BootstrapAsset::register($this);
+    <?php
+    BootstrapAsset::register($this);
     $this->head() ?>
 </head>
 <body class="d-flex flex-column h-100">
