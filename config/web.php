@@ -11,7 +11,8 @@ $config = [
             'cookieValidationKey' => 'vvPB--SLcGS3ZUHxk18vSY_6hNbg75J8',
         ],
         'response' => [
-            'format' => yii\web\Response::FORMAT_JSON, // Установите формат ответа на JSON
+            //'format' => yii\web\Response::FORMAT_JSON,
+            //'format' => 'json',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
