@@ -5,8 +5,9 @@ namespace app\controllers;
 use Yii;
 use yii\web\Response;
 use app\models\User;
+use yii\web\Controller as BaseController;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
     public function actionGetUsers()
     {
