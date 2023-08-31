@@ -6,6 +6,10 @@ ini_set('display_errors', 'On');
 ini_set('display_startup_errors', 'On');
 error_reporting(E_ALL);
 
+// Перенаправление запросов на этот URL
+if (!isset($_GET['r'])) {
+    $_GET['r'] = '/';
+}
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
 
