@@ -16,6 +16,15 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                //'users' => 'user/get-users',
+                '' => 'site/index',
+            ],
+        ],
         /*'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => getenv('DATABASE_URL'),
