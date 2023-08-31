@@ -26,7 +26,7 @@ $config = [
                 '/' => 'site/index',
             ],
         ],
-        /*'db' => [
+        'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => getenv('DATABASE_URL'),
             'username' => getenv('DB_USERNAME'),
@@ -36,7 +36,7 @@ $config = [
             'on afterOpen' => function ($event) {
                 Yii::info('Connected to the database!');
             },
-        ],*/
+        ],
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
