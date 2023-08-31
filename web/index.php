@@ -1,5 +1,6 @@
 <?php
-
+ini_set('log_errors', 1);
+ini_set('error_log', '/tests/php-error.log');
 // comment out the following two lines when deployed to production
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'prod');
