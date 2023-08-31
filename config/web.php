@@ -16,7 +16,7 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'db' => [
+        /*'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => getenv('DATABASE_URL'),
             'username' => getenv('DB_USERNAME'),
@@ -26,7 +26,7 @@ $config = [
             'on afterOpen' => function ($event) {
                 Yii::info('Connected to the database!');
             },
-        ],
+        ],*/
         // ... Другие компоненты ...
     ],
     'params' => $params,
