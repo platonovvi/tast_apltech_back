@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function actionGetUsers()
     {
-        return $this->render('index');
+        return null;
         /*Yii::$app->response->format = Response::FORMAT_JSON;
 
         $users = User::find()->asArray()->all();
