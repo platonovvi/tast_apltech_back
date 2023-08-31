@@ -8,7 +8,7 @@ use app\models\User;
 
 class UserController extends Controller
 {
-    public function actionGet_All()
+    public function actionGetUsers()
     {
         return $this->render('index');
         /*Yii::$app->response->format = Response::FORMAT_JSON;
