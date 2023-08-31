@@ -49,7 +49,18 @@ $config = [
         ],
         'assetManager' => [
             'bundles' => [
-                'yii\web\JqueryAsset' => false,
+                'yii\web\JqueryAsset' => false, // Отключаем стандартный JqueryAsset
+                'yii\bootstrap\BootstrapAsset' => [
+                    'sourcePath' => null, // Отключаем стандартный BootstrapAsset
+                    'css' => [],
+                ],
+                // Добавляем зависимость на jQuery
+                'yii\web\YiiAsset' => [
+                    'depends' => [
+                        'yii\bootstrap\BootstrapAsset',
+                        'bower-asset/jquery', // Добавляем зависимость на bower-asset/jquery
+                    ],
+                ],
             ],
         ],
     ],
