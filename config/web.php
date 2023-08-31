@@ -37,6 +37,10 @@ $config = [
                 Yii::info('Connected to the database!');
             },
         ],*/
+        'user' => [
+            'identityClass' => 'app\models\User',
+            'enableAutoLogin' => true,
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
