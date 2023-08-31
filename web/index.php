@@ -18,9 +18,7 @@ if (($protocol === 'http' && $port != 80) || ($protocol === 'https' && $port != 
     $baseUrl .= ':' . $port;
 }
 
-$logFile = __DIR__ . '/../logs/root_url.log'; // Укажите путь к файлу лога
-
-error_log('Root URL: ' . $baseUrl, 3, $logFile);
+error_log('Root URL: ' . $baseUrl);
 $config = require __DIR__ . '/../config/web.php';
 
 (new yii\web\Application($config))->run();
