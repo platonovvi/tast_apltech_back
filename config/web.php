@@ -11,8 +11,7 @@ $config = [
             'cookieValidationKey' => 'your-random-key-here',
         ],
         'response' => [
-            //'format' => yii\web\Response::FORMAT_JSON,
-            //'format' => 'json',
+            'format' => 'json',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -22,7 +21,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'users' => 'user/get-users',
+                'user/get_users' => 'user/get-users',
                 '/' => 'site/index',
             ],
         ],
