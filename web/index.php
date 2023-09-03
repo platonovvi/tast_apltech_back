@@ -4,8 +4,8 @@
 require(__DIR__ . '/../vendor/autoload.php');
 
 // Определение окружения (Development, Production и т.д.)
-defined('YII_DEBUG') or define('YII_DEBUG', true);
-defined('YII_ENV') or define('YII_ENV', getenv('YII_ENV') ?: 'prod');
+/*defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_ENV') or define('YII_ENV', getenv('YII_ENV') ?: 'prod');*/
 
 // Подключение файла конфигурации
 $config = require(__DIR__ . '/../config/web.php');
