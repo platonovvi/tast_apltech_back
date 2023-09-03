@@ -34,9 +34,9 @@ $config = [
             'password' => getenv('DB_PASSWORD'),
             'charset' => 'utf8',
             'enableSchemaCache' => true,
-            'on afterOpen' => function ($event) {
+            /*'on afterOpen' => function ($event) {
                 Yii::info('Connected to the database!');
-            },
+            },*/
         ],
         'user' => [
             'identityClass' => 'app\models\User',
