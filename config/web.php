@@ -1,5 +1,4 @@
 <?php
-Yii::error('Местоположение ошибки: какая-то информация о состоянии приложения', 'имя_категории_лога');
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'prod');
 $params = require __DIR__ . '/params.php';
