@@ -3,12 +3,12 @@
 return [
     'class' => 'yii\db\Connection',
     //'dsn' => getenv('DATABASE_URL'),
-    'dsn' => 'pgsql:host=ec2-107-21-67-46.compute-1.amazonaws.com;port=5432;dbname=db0asres84leif',
-    'username' => 'aoverokslpmuih',
-    'password' => '82998c11d8c760242578d4ded65fc5c6e46fc9111ade524a47b9e60b4357fa2f',
+    'dsn' => 'pgsql:host=ec2-35-169-11-108.compute-1.amazonaws.com;port=5432;dbname=d80k1v9v2tj9r3',
+    'username' => 'kkvlrykuzvfqzw',
+    'password' => 'e3513f86ae7e498602e2dd5beb526b6ec2d71892cacbd2335a051e497f505267',
     'charset' => 'utf8',
     'on afterOpen' => function ($event) {
-        Yii::info('Database connection successful.', 'application');
+        //Yii::info('Database connection successful.', 'application');
     },
     'enableSchemaCache' => true,
 ];
