@@ -70,7 +70,8 @@
       "generateCookieValidationKey": [
         "config/web.php"
       ]
-    }
+    },
+    "document-root": "web/"
   },
   "repositories": [
     {
