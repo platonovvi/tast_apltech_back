@@ -1,1 +1,1 @@
-web: bin/heroku-php-nginx -C nginx.conf.erb
+web: vendor/bin/heroku-php-nginx -C nginx.conf.erb
