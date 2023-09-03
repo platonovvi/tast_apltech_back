@@ -1,5 +1,5 @@
 <?php
-defined('YII_DEBUG') or define('YII_DEBUG', false);
+defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', getenv('YII_ENV') ?: 'prod');
 $params = require __DIR__ . '/params.php';
 
@@ -42,7 +42,7 @@ $config = [
             'enableAutoLogin' => true,
         ],
         'log' => [
-            /*'traceLevel' => YII_DEBUG ? 3 : 0,*/
+            'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 // ...
                 [
