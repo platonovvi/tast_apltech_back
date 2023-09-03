@@ -1,5 +1,9 @@
 <?php
-
+if (class_exists('yii\base\Application')) {
+    echo 'Класс yii\base\Application существует.';
+} else {
+    echo 'Класс yii\base\Application не существует.';
+}
 // Подключаем автозагрузчик Composer
 require(__DIR__ . '/../vendor/autoload.php');
 

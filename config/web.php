@@ -64,10 +64,4 @@ $config = [
     'params' => $params,
 ];
 
-if (YII_ENV) {
-    // Конфигурация для разработки
-} else {
-    // Конфигурация для продакшена
-}
-
 return $config;
