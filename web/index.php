@@ -1,5 +1,6 @@
 <?php
-
+// Определение корневой директории
+defined('YII_ROOT') or define('YII_ROOT', dirname(__DIR__));
 // Подключаем автозагрузчик Composer
 require(__DIR__ . '/../vendor/autoload.php');
 // Подключаем Yii2
