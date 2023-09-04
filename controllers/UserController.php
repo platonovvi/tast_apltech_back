@@ -27,7 +27,8 @@ class UserController extends Controller
     public function actionGetUsers()
     {
         $content = 'Content';
-        return $this->renderContent($content);
+        return $this->render('index');
+        //return $this->renderContent($content);
         /*$users = User::find()->asArray()->all();
         return $this->asJson($users);*/
     }
