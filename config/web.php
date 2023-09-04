@@ -9,9 +9,11 @@ $config = [
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
+            'class' => 'yii\web\Request',
             'cookieValidationKey' => 'your-random-key-here',
         ],
         'response' => [
+            'class' => 'yii\web\Response',
             'format' => 'json',
         ],
         'cache' => [
