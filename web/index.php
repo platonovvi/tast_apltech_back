@@ -8,7 +8,7 @@ require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 // Определение окружения (Development, Production и т.д.)
 /*defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', getenv('YII_ENV') ?: 'prod');*/
-
+echo $_SERVER['DOCUMENT_ROOT'];
 // Подключение файла конфигурации
 $config = require(__DIR__ . '/../config/web.php');
 
