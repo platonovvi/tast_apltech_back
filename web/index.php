@@ -1,8 +1,9 @@
 <?php
-// Подключаем Yii2
-require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
+
 // Подключаем автозагрузчик Composer
 require(__DIR__ . '/../vendor/autoload.php');
+// Подключаем Yii2
+require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 
 // Определение окружения (Development, Production и т.д.)
 /*defined('YII_DEBUG') or define('YII_DEBUG', true);
