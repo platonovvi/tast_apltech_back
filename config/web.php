@@ -14,7 +14,7 @@ $config = [
         ],
         'request' => [
             'class' => 'yii\web\Request',
-            'cookieValidationKey' => Yii::$app->getSecurity()->generateRandomString(32),
+            'cookieValidationKey' => isset(Yii::$app) ? Yii::$app->getSecurity()->generateRandomString(32) : '',
         ],
         'response' => [
             'class' => 'yii\web\Response',

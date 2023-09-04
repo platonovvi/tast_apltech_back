@@ -9,7 +9,6 @@ require(__DIR__ . '/../vendor/autoload.php');
 defined('YII_ENV') or define('YII_ENV', getenv('YII_ENV') ?: 'prod');*/
 // Подключение файла конфигурации
 $config = require(__DIR__ . '/../config/web.php');
-echo "Файл web.php инициализирован.<br>";
 // Запуск приложения Yii2
 if (PHP_SAPI === 'cli-server') {
     $url = parse_url($_SERVER['REQUEST_URI']);
