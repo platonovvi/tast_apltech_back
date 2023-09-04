@@ -1,23 +1,20 @@
 <?php
 
-// Определите путь к файлу autoload.php
-$autoloadPath = __DIR__ . '/app/vendor/autoload.php';
-
-// Проверьте, существует ли autoload.php
-if (!file_exists($autoloadPath)) {
-    die("Ошибка: Файл 'autoload.php' не найден. Убедитесь, что зависимости Composer установлены и верно настроены.");
+// Определяем, используется ли встроенный PHP-сервер
+if (PHP_SAPI === 'cli-server') {
+    $url = parse_url($_SERVER['REQUEST_URI']);
+    $file = __DIR__ . $url['path'];
+    // Если запрошенный файл существует, возвращаем его
+    if (is_file($file)) {
+        return false;
+    }
 }
 
-// Подключите автозагрузчик
-require_once $autoloadPath;
+// Подключаем автозагрузчик Composer
+require(__DIR__ . './vendor/autoload.php');
 
-// Определите путь к файлу web/index.php
-$yiiPath = __DIR__ . '/app/web/index.php';
+// Подключаем файл с настройками Yii2 приложения
+$config = require __DIR__ . '/config/web.php';
 
-// Проверьте, существует ли index.php
-if (!file_exists($yiiPath)) {
-    die("Ошибка: Файл 'index.php' не найден в директории 'web'. Убедитесь, что структура проекта настроена правильно.");
-}
-
-// Подключите файл index.php
-require_once $yiiPath;
+// Создаем и запускаем экземпляр Yii2 приложения
+(new yii\web\Application($config))->run();
