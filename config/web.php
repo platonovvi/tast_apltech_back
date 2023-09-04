@@ -9,6 +9,9 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
+        'security' => [
+            'class' => 'yii\base\Security',
+        ],
         'request' => [
             'class' => 'yii\web\Request',
             'cookieValidationKey' => Yii::$app->getSecurity()->generateRandomString(32),
@@ -19,9 +22,6 @@ $config = [
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
-        ],
-        'security' => [
-            'class' => 'yii\base\Security',
         ],
         'urlManager' => [
             'class' => 'yii\web\UrlManager',
