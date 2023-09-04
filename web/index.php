@@ -9,7 +9,7 @@ require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 /*defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', getenv('YII_ENV') ?: 'prod');*/
 // Подключение файла конфигурации
-$config = require(__DIR__ . '/../config/web.php');
+$config = require __DIR__ . '/../config/web.php';
 // Запуск приложения Yii2
 if (PHP_SAPI === 'cli-server') {
     $url = parse_url($_SERVER['REQUEST_URI']);

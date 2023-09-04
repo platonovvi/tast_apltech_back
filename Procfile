@@ -1,1 +1,1 @@
-web: yii serve --port=$PORT
+web: php yii serve --port=$PORT
