@@ -27,6 +27,8 @@ class UserController extends BaseController
     }*/
     public function actionGetUsers()
     {
+        echo 'Код дошел сюда.';
+        die(); // или exit();
         $content = 'Content';
         //return $this->render('index');
         //return $this->renderContent($content);
