@@ -11,7 +11,7 @@ if (PHP_SAPI === 'cli-server') {
 }
 
 // Подключаем автозагрузчик Composer
-require __DIR__ . '/vendor/autoload.php';
+require(__DIR__ . '/../vendor/autoload.php');
 
 // Подключаем файл с настройками Yii2 приложения
 $config = require __DIR__ . '/config/web.php';
