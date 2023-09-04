@@ -17,7 +17,5 @@ if (PHP_SAPI === 'cli-server') {
         return false;
     }
 } else {
-    echo 'Код дошел сюда.';
-    die(); // или exit();
     (new yii\web\Application($config))->run();
 }
