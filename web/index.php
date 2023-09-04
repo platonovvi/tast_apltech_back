@@ -2,11 +2,6 @@
 
 // Подключаем автозагрузчик Composer
 require(__DIR__ . '/../vendor/autoload.php');
-if (class_exists('yii\base\Application')) {
-    echo 'Класс yii\base\Application существует.';
-} else {
-    echo 'Класс yii\base\Application не существует.';
-}
 
 // Определение окружения (Development, Production и т.д.)
 /*defined('YII_DEBUG') or define('YII_DEBUG', true);
