@@ -3,6 +3,12 @@ defined('YII_DEBUG') or define('YII_DEBUG', false);
 defined('YII_ENV') or define('YII_ENV', 'prod');
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+use yii\web\Request;
+
+$request = new Request();
+$currentUrl = $request->getUrl();
+
+echo $currentUrl;
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
@@ -24,7 +30,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '/user/get_users' => 'user/get-users',
+                'user/get_users' => 'user/get-users',
                 '/' => 'site/index',
             ],
         ],
