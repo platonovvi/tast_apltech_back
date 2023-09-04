@@ -1,1 +1,1 @@
-web: heroku-php-nginx -A 'yii serve --port=$PORT' -C /path/to/nginx.conf
+web: yii serve --port=$PORT
