@@ -3,12 +3,7 @@ defined('YII_DEBUG') or define('YII_DEBUG', false);
 defined('YII_ENV') or define('YII_ENV', 'prod');
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
-use yii\web\Request;
 
-$request = new Request();
-$currentUrl = $request->getUrl();
-
-echo $currentUrl;
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
@@ -16,7 +11,7 @@ $config = [
     'components' => [
         'request' => [
             'class' => 'yii\web\Request',
-            'cookieValidationKey' => 'your-random-key-here',
+            'cookieValidationKey' => Yii::$app->getSecurity()->generateRandomString(32),
         ],
         'response' => [
             'class' => 'yii\web\Response',
