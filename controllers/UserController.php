@@ -28,9 +28,9 @@ class UserController extends BaseController
     public function actionGetUsers()
     {
         $content = 'Content';
-        return $this->render('index');
+        //return $this->render('index');
         //return $this->renderContent($content);
-        /*$users = User::find()->asArray()->all();
-        return $this->asJson($users);*/
+        $users = User::find()->asArray()->all();
+        return $this->asJson($users);
     }
 }
