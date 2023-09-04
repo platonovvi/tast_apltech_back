@@ -20,9 +20,9 @@ $config = [
             'class' => 'yii\web\Response',
             'format' => 'json',
         ],
-        'cache' => [
+        /*'cache' => [
             'class' => 'yii\caching\FileCache',
-        ],
+        ],*/
         'urlManager' => [
             'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
