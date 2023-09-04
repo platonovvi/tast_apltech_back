@@ -3,11 +3,6 @@ defined('YII_DEBUG') or define('YII_DEBUG', false);
 defined('YII_ENV') or define('YII_ENV', 'prod');
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
-if (class_exists('Yii')) {
-    echo 'Yii is successfully connected and working in this application.';
-} else {
-    echo 'Yii is not connected or not working in this application.';
-}
 
 $config = [
     'id' => 'basic',
