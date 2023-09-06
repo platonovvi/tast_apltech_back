@@ -7,13 +7,18 @@ require(__DIR__ . '/vendor/autoload.php');
 $config = require (__DIR__ . '/config/web.php');
 //$config = require __DIR__ . '\config\web.php';
 
+
+
+// Проверяем, что приложение успешно создано
+if (class_exists('Yii')) {
+    // Класс Yii определен
+    // Ваш код для работы с Yii
+} else {
+    // Класс Yii не определен
+    echo "Класс Yii не определен.";
+    // Возможно, у вас есть проблема с настройкой Yii или автозагрузкой классов.
+}
 // Создаем и запускаем экземпляр Yii2 приложения
 $application = new yii\web\Application($config);
-// Проверяем, что приложение успешно создано
-if ($application instanceof yii\web\Application) {
-    echo ('Ok');
-} else {
-    die('Ошибка: autoload.php не загружен.');
-}
 $application->run();
 //(new yii\web\Application($config))->run();
