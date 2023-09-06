@@ -4,11 +4,6 @@ defined('YII_ENV') or define('YII_ENV', 'prod');*/
 use yii\BaseYii;
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
-if (require __DIR__ . '/params.php') {
-    echo 'Ok';
-} else {
-    die('Ошибка: autoload.php не загружен.');
-}
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
@@ -75,5 +70,9 @@ $config = [
     ],
     'params' => $params,
 ];
-
+if ($config) {
+    echo 'Ok';
+} else {
+    die('Ошибка: autoload.php не загружен.');
+}
 return $config;
