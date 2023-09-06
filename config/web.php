@@ -8,6 +8,8 @@ $dsnParts = parse_url($originalDsn);
 
 // Создаем новую строку DSN в правильном формате
 $newDsn = "pgsql:host={$dsnParts['host']};port={$dsnParts['port']};dbname={$dsnParts['path']}";
+$username = $dsnParts['user'] ?? '';
+$password = $dsnParts['pass'] ?? '';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
@@ -42,8 +44,8 @@ $config = [
         'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => $newDsn,
-            'username' => getenv('DB_USERNAME'),
-            'password' => getenv('DB_PASSWORD'),
+            'username' => $username,
+            'password' => $password,
             'charset' => 'utf8',
             'enableSchemaCache' => true,
             'on afterOpen' => function ($event) {
