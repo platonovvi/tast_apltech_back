@@ -1,0 +1,16 @@
+server {
+    listen <%= ENV["PORT"] %>;
+
+    server_name https://sleepy-dawn-85022-dfcee393bc59.herokuapp.com;
+
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_pass unix:/tmp/heroku.fcgi.socket;
+        fastcgi_index index.php;
+    }
+}
