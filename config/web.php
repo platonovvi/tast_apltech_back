@@ -3,6 +3,11 @@ defined('YII_DEBUG') or define('YII_DEBUG', false);
 /*defined('YII_ENV') or define('YII_ENV', 'prod');*/
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$originalDsn = getenv('DATABASE_URL');
+$dsnParts = parse_url($originalDsn);
+
+// Создаем новую строку DSN в правильном формате
+$newDsn = "pgsql:host={$dsnParts['host']};port={$dsnParts['port']};dbname={$dsnParts['path']}";
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
@@ -36,7 +41,7 @@ $config = [
         ],
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => getenv('DATABASE_URL'),
+            'dsn' => $newDsn,
             'username' => getenv('DB_USERNAME'),
             'password' => getenv('DB_PASSWORD'),
             'charset' => 'utf8',

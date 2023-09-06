@@ -1,10 +1,14 @@
 <?php
+$originalDsn = getenv('DATABASE_URL');
+$dsnParts = parse_url($originalDsn);
 
+// Создаем новую строку DSN в правильном формате
+$newDsn = "pgsql:host={$dsnParts['host']};port={$dsnParts['port']};dbname={$dsnParts['path']}";
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => getenv('DATABASE_URL'), // Получаем DSN из переменной окружения DATABASE_URL
-    'username' => getenv('DB_USERNAME'), // Получаем имя пользователя из переменной окружения DB_USERNAME
-    'password' => getenv('DB_PASSWORD'), // Получаем пароль из переменной окружения DB_PASSWORD
+    'dsn' => $newDsn,
+    'username' => getenv('DB_USERNAME'),
+    'password' => getenv('DB_PASSWORD'),
     'charset' => 'utf8',
     'enableSchemaCache' => true,
     'on afterOpen' => function ($event) {
