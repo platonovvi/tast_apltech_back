@@ -13,6 +13,8 @@ $config = [
         ],
         'request' => [
             'class' => 'yii\web\Request',
+            'enableCookieValidation' => false,
+            'enableCsrfValidation' => false,
             'cookieValidationKey' => 'aBcDeFgH1234567890IjKlMnOpQrStUvWxYz',
         ],
         'response' => [
