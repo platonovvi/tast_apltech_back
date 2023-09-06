@@ -16,10 +16,11 @@ class ProductsController extends Controller
 
     public function actionGetProduct($id): Response
     {
-        $product = Product::findOne($id);
+        return $id;
+        /*$product = Product::findOne($id);
         if ($product === null) {
             throw new NotFoundHttpException('Продукт не найден');
         }
-        return $this->asJson($product);
+        return $this->asJson($product);*/
     }
 }
