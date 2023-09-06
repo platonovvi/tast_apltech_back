@@ -8,6 +8,7 @@ $config = require(__DIR__ . '/config/web.php');
 
 // Проверяем, что приложение успешно создано
 if (class_exists('Yii')) {
+    echo "Класс Yii определен.";
     // Класс Yii определен
     // Ваш код для работы с Yii
 } else {

@@ -2,7 +2,6 @@
 /*defined('YII_DEBUG') or define('YII_DEBUG', false);
 defined('YII_ENV') or define('YII_ENV', 'prod');*/
 use yii\BaseYii;
-dir('qwe');
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 $config = [
