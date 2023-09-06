@@ -6,7 +6,6 @@ if (PHP_SAPI === 'cli-server') {
     $file = __DIR__ . $url['path'];
     // Если запрошенный файл существует, возвращаем его
     if (is_file($file)) {
-        die();
         return false;
     }
 }
