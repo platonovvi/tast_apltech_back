@@ -18,6 +18,9 @@ if (class_exists('yii\web\Application')) {
     // Возможно, у вас есть проблема с настройкой Yii или автозагрузкой классов.
 }
 // Создаем и запускаем экземпляр Yii2 приложения
-/*$application = new yii\web\Application($config);
-$application->run();*/
+try {
+    $application = new Application($config);
+} catch (\yii\base\InvalidConfigException $e) {
+}
+$application->run();
 //(new yii\web\Application($config))->run();
