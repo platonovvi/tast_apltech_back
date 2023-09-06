@@ -8,4 +8,13 @@ $config = require (__DIR__ . '/config/web.php');
 //$config = require __DIR__ . '\config\web.php';
 
 // Создаем и запускаем экземпляр Yii2 приложения
-(new yii\web\Application($config))->run();
+$application = new yii\web\Application($config);
+
+// Проверяем, что приложение успешно создано
+if ($application instanceof yii\web\Application) {
+    echo 'Ok';
+} else {
+    die('Ошибка: autoload.php не загружен.');
+}
+$application->run();
+//(new yii\web\Application($config))->run();

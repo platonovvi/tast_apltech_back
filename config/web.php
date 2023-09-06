@@ -70,9 +70,4 @@ $config = [
     ],
     'params' => $params,
 ];
-if ($config) {
-    echo 'Ok';
-} else {
-    die('Ошибка: autoload.php не загружен.');
-}
 return $config;
