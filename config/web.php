@@ -28,7 +28,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'user/get_users' => 'user/index',
+                'user/get_users' => 'user/get-users',
                 '/' => 'site/index',
             ],
         ],
