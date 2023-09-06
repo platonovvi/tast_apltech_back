@@ -1,7 +1,6 @@
 <?php
-/*defined('YII_DEBUG') or define('YII_DEBUG', false);
-defined('YII_ENV') or define('YII_ENV', 'prod');*/
-use yii\BaseYii;
+defined('YII_DEBUG') or define('YII_DEBUG', false);
+/*defined('YII_ENV') or define('YII_ENV', 'prod');*/
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 $config = [
@@ -24,7 +23,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],*/
         'urlManager' => [
-            'class' => BaseYii::class,
+            'class' => 'yii\web\UrlManager',
             //'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -48,7 +47,7 @@ $config = [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
         ],
-        /*'log' => [
+        'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 // ...
@@ -57,7 +56,7 @@ $config = [
                     'levels' => ['error', 'warning', 'info'],
                 ],
             ],
-        ],*/
+        ],
         'assetManager' => [
             'bundles' => [
                 'yii\web\JqueryAsset' => false, // Отключаем стандартный JqueryAsset
