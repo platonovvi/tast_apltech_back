@@ -1,5 +1,9 @@
 <?php
-
+if (require(__DIR__ . '/vendor/autoload.php')) {
+    echo 'autoload.php успешно загружен.';
+} else {
+    die('Ошибка: autoload.php не загружен.');
+}
 // Подключаем автозагрузчик Composer
 require(__DIR__ . '/vendor/autoload.php');
 //require(__DIR__ . '\vendor\autoload.php');
@@ -7,6 +11,6 @@ require(__DIR__ . '/vendor/autoload.php');
 // Подключаем файл с настройками Yii2 приложения
 $config = require __DIR__ . '/config/web.php';
 //$config = require __DIR__ . '\config\web.php';
-die(123);
+
 // Создаем и запускаем экземпляр Yii2 приложения
 (new yii\web\Application($config))->run();
