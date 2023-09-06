@@ -27,10 +27,10 @@ class UserController extends BaseController
     }*/
     public function actionGetUsers()
     {
-        Yii::debug("Маршрут до контроллера UserController::actionGetUsers достигнут!");
-        echo "Действие actionGetUsers вызвано!";
+        /*Yii::debug("Маршрут до контроллера UserController::actionGetUsers достигнут!");
+        echo "Действие actionGetUsers вызвано!";*/
         //return $this->render('index'); // Возвращаем представление для действия index
-        /*$users = User::find()->asArray()->all();
-        return $this->asJson($users);*/
+        $users = User::find()->asArray()->all();
+        return $this->asJson($users);
     }
 }
