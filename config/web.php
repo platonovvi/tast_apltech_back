@@ -40,6 +40,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'products' => 'products/get-products',
                 'asd' => 'user/get-users',
                 '' => 'site/index',
             ],
