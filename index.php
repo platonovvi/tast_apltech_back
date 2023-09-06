@@ -14,7 +14,8 @@ $application = new yii\web\Application($config);
 if ($application instanceof yii\web\Application) {
     echo 'Ok';
 } else {
-    die('Ошибка: autoload.php не загружен.');
+    echo 'Ok21';
+    //die('Ошибка: autoload.php не загружен.');
 }
 $application->run();
 //(new yii\web\Application($config))->run();
