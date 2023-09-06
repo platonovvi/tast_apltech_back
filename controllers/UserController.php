@@ -1,35 +1,12 @@
 <?php
-
 namespace app\controllers;
-
-use Yii;
-use yii\web\Response;
-use app\models\User;
 use yii\web\Controller as BaseController;
-
+use Yii;
 class UserController extends BaseController
 {
-    /*public function behaviors()
+    public function actionIndex()
     {
-        return [
-            'access' => [
-                'class' => 'yii\filters\AccessControl',
-                'rules' => [
-                    [
-                        'actions' => ['get-users'],
-                        'allow' => true,
-                        'roles' => ['admin'], // Примерная роль для доступа
-                    ],
-                    // Другие правила...
-                ],
-            ],
-        ];
-    }*/
-    public function actionGetUsers()
-    {
-        Yii::debug("Маршрут до контроллера UserController::actionGetUsers достигнут!");
+        Yii::debug("Маршрут до контроллера SiteController::actionIndex достигнут!");
         return $this->render('index'); // Возвращаем представление для действия index
-        /*$users = User::find()->asArray()->all();
-        return $this->asJson($users);*/
     }
 }
