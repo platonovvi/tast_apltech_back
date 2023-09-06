@@ -1,8 +1,14 @@
 <?php
 /*defined('YII_DEBUG') or define('YII_DEBUG', false);
 defined('YII_ENV') or define('YII_ENV', 'prod');*/
+use yii\BaseYii;
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+if (require __DIR__ . '/params.php') {
+    echo 'Ok';
+} else {
+    die('Ошибка: autoload.php не загружен.');
+}
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
@@ -23,7 +29,8 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],*/
         'urlManager' => [
-            'class' => 'yii\web\UrlManager',
+            'class' => BaseYii::class,
+            //'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
