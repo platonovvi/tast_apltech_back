@@ -7,7 +7,7 @@ use yii\web\Response;
 use app\models\User;
 use yii\web\Controller as BaseController;
 
-class UserController extends BaseController
+class UserController extends Controller
 {
     /*public function behaviors()
     {
