@@ -3,10 +3,14 @@ defined('YII_DEBUG') or define('YII_DEBUG', false);
 /*defined('YII_ENV') or define('YII_ENV', 'prod');*/
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+
+// Парсим данные из DATABASE_URL
 $originalDsn = getenv('DATABASE_URL');
 $dsnParts = parse_url($originalDsn);
-
-// Создаем новую строку DSN в правильном формате
+// Удаление первого слэша перед именем базы данных
+if (isset($dsnParts['path'])) {
+    $dsnParts['path'] = ltrim($dsnParts['path'], '/');
+}
 $newDsn = "pgsql:host={$dsnParts['host']};port={$dsnParts['port']};dbname={$dsnParts['path']}";
 $username = $dsnParts['user'] ?? '';
 $password = $dsnParts['pass'] ?? '';
