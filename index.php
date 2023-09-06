@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/vendor/yiisoft/yii2/Yii.php';
+use yii\web\Application;
 // Подключаем автозагрузчик Composer
 require(__DIR__ . '/vendor/autoload.php');
 
@@ -7,7 +8,7 @@ require(__DIR__ . '/vendor/autoload.php');
 $config = require(__DIR__ . '/config/web.php');
 
 // Проверяем, что приложение успешно создано
-if (class_exists('Yii')) {
+if (class_exists('yii\web\Application')) {
     echo "Класс Yii определен.";
     // Класс Yii определен
     // Ваш код для работы с Yii
