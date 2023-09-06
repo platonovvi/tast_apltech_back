@@ -10,4 +10,3 @@ try {
     (new Application($config))->run();
 } catch (\yii\base\InvalidConfigException $e) {
 }
-//(new yii\web\Application($config))->run();
