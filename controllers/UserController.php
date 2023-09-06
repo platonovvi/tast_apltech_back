@@ -27,8 +27,14 @@ class UserController extends BaseController
     }*/
     public function actionGetUsers()
     {
-        Yii::debug("Маршрут до контроллера UserController::actionGetUsers достигнут!");
-        echo "Действие actionGetUsers вызвано!";
+        try {
+            Yii::$app->db->open();
+            echo "Подключение к базе данных успешно установлено.";
+        } catch (\yii\db\Exception $e) {
+            echo "Ошибка подключения к базе данных: " . $e->getMessage();
+        }
+        //Yii::debug("Маршрут до контроллера UserController::actionGetUsers достигнут!");
+        //echo "Действие actionGetUsers вызвано!";
         //return $this->render('index'); // Возвращаем представление для действия index
         /*$users = User::find()->asArray()->all();
         return $this->asJson($users);*/
