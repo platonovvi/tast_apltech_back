@@ -11,7 +11,9 @@ $config = require (__DIR__ . '/config/web.php');
 $application = new yii\web\Application($config);
 // Проверяем, что приложение успешно создано
 if ($application instanceof yii\web\Application) {
-    die ('Ok');
+    echo ('Ok');
+} else {
+    die('Ошибка: autoload.php не загружен.');
 }
 $application->run();
 //(new yii\web\Application($config))->run();
