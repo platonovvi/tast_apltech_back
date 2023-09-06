@@ -1,6 +1,6 @@
 <?php
-defined('YII_DEBUG') or define('YII_DEBUG', false);
-/*defined('YII_ENV') or define('YII_ENV', 'prod');*/
+/*defined('YII_DEBUG') or define('YII_DEBUG', false);
+defined('YII_ENV') or define('YII_ENV', 'prod');*/
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -47,7 +47,7 @@ $config = [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
         ],
-        'log' => [
+        /*'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 // ...
@@ -56,7 +56,7 @@ $config = [
                     'levels' => ['error', 'warning', 'info'],
                 ],
             ],
-        ],
+        ],*/
         'assetManager' => [
             'bundles' => [
                 'yii\web\JqueryAsset' => false, // Отключаем стандартный JqueryAsset
