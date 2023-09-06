@@ -14,8 +14,9 @@ class m210828_123456_create_users_table extends Migration
     {
         $this->createTable('cat_users', [
             'id' => $this->primaryKey(),
-            'username' => $this->string()->notNull(),
-            'password' => $this->string()->notNull(),
+            'username' => $this->string()->notNull()->comment('Логин пользователя'),
+            'password' => $this->string()->notNull()->comment('Пароль'),
+            'api_token' => $this->string()->notNull()->comment('JWT'),
             'created_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
             'updated_at' => $this->timestamp(),
         ]);
