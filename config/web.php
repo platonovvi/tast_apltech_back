@@ -3,7 +3,7 @@
 defined('YII_ENV') or define('YII_ENV', 'prod');*/
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
-
+die(Yii::$app->basePath);
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
