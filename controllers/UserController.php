@@ -32,7 +32,7 @@ class UserController extends BaseController
             Yii::$app->db->open();
             echo "Подключение к базе данных успешно установлено.";
         } catch (\yii\db\Exception $e) {
-            echo "Ошибка подключения к базе данных: " . $e->getMessage();
+            echo getenv('DB_PASSWORD') . $e->getMessage();
         }
         //Yii::debug("Маршрут до контроллера UserController::actionGetUsers достигнут!");
         //echo "Действие actionGetUsers вызвано!";
