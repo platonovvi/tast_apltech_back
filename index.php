@@ -19,8 +19,7 @@ if (class_exists('yii\web\Application')) {
 }
 // Создаем и запускаем экземпляр Yii2 приложения
 try {
-    $application = new Application($config);
+    (new Application($config))->run();
 } catch (\yii\base\InvalidConfigException $e) {
 }
-$application->run();
 //(new yii\web\Application($config))->run();
