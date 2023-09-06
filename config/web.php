@@ -41,7 +41,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'products' => 'products/get-products',
-                'asd' => 'user/get-users',
+                'product/{id}' => 'products/get-product',
                 '' => 'site/index',
             ],
         ],
