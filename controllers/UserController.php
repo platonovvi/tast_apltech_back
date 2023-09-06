@@ -27,10 +27,9 @@ class UserController extends BaseController
     }*/
     public function actionGetUsers()
     {
-        $content = 'Content';
-        //return $this->render('index');
-        //return $this->renderContent($content);
-        $users = User::find()->asArray()->all();
-        return $this->asJson($users);
+        Yii::debug("Маршрут до контроллера UserController::actionGetUsers достигнут!");
+        return $this->render('index'); // Возвращаем представление для действия index
+        /*$users = User::find()->asArray()->all();
+        return $this->asJson($users);*/
     }
 }
