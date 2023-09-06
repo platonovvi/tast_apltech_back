@@ -24,10 +24,10 @@ $config = [
         ],*/
         'urlManager' => [
             'class' => 'yii\web\UrlManager',
-            //'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
                 'asd' => 'user/get-users',
                 '/' => 'site/index',
             ],
