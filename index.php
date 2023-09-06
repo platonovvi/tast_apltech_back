@@ -7,6 +7,6 @@ require(__DIR__ . '/vendor/autoload.php');
 // Подключаем файл с настройками Yii2 приложения
 $config = require __DIR__ . '/config/web.php';
 //$config = require __DIR__ . '\config\web.php';
-
+die(Yii::$app->basePath);
 // Создаем и запускаем экземпляр Yii2 приложения
 (new yii\web\Application($config))->run();
