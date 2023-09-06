@@ -11,11 +11,10 @@ $config = require (__DIR__ . '/config/web.php');
 $application = new yii\web\Application($config);
 
 // Проверяем, что приложение успешно создано
-if ($application instanceof yii\web\Application) {
+/*if ($application instanceof yii\web\Application) {
     echo 'Ok';
 } else {
-    echo 'Ok21';
-    //die('Ошибка: autoload.php не загружен.');
-}
+    die('Ошибка: autoload.php не загружен.');
+}*/
 $application->run();
 //(new yii\web\Application($config))->run();
