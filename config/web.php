@@ -42,6 +42,7 @@ $config = [
             'rules' => [
                 'products' => 'products/get-products',
                 'product/<id:\d+>' => 'products/get-product',
+                'login' => 'user/login',
                 '' => 'site/index',
             ],
         ],

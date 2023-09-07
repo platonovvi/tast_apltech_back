@@ -18,7 +18,7 @@ class ProductsController extends Controller
     {
         $query = Product::findOne($id);
         if ($query === null) {
-            return $this->asJson(['success' => false, 'message' => 'Продукт не найден']);
+            return $this->asJson(['success' => false, 'message' => 'Товар не найден']);
         }
         return $this->asJson(['success' => true, 'product' => $query]);
     }

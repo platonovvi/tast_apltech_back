@@ -12,17 +12,20 @@ class User extends ActiveRecord implements IdentityInterface
         return 'cat_users'; // Имя таблицы, хранящей данные пользователей
     }
 
-    // ... другие атрибуты и методы модели ...
+    public function validatePassword($password)
+    {
+        return \Yii::$app->security->validatePassword($password, $this->password);
+    }
 
-    // Реализация методов IdentityInterface
     public static function findIdentity($id)
     {
         return static::findOne(['id' => $id]);
     }
 
+    // Реализуйте остальные методы интерфейса пустыми
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        // Реализуйте по вашим потребностям
+        return null;
     }
 
     public function getId()
@@ -32,30 +35,11 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getAuthKey()
     {
-        return $this->authKey;
+        return null;
     }
 
     public function validateAuthKey($authKey)
     {
-        return $this->authKey === $authKey;
-    }
-
-    public function validatePassword($password)
-    {
-        return \Yii::$app->security->validatePassword($password, $this->password_hash);
-    }
-
-    public function setPassword($password)
-    {
-        $this->password_hash = \Yii::$app->security->generatePasswordHash($password);
-    }
-
-    public function signup()
-    {
-        if ($this->validate()) {
-            $this->setPassword($this->password);
-            return $this->save();
-        }
-        return false;
+        return true;
     }
 }
