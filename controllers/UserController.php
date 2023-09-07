@@ -79,6 +79,9 @@ class UserController extends Controller
     {
 
         $request = Yii::$app->request;
+        if ($request->isPost) {
+            return $this->asJson(['success' => true, 'message' => '123']);
+        }
         $arr = $request->post();
         $username = $request->post('username');
         $password = $request->post('password');
