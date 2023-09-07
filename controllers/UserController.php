@@ -80,10 +80,11 @@ class UserController extends Controller
 
         $request = Yii::$app->request;
         if ($request->isPost) {
+            return $this->asJson(['message' => 'POST-запрос успешно обработан']);
             $postData = $request->post();
             // Проверяем, были ли данные POST успешно получены
             if (!empty($postData)) {
-                return $this->asJson(['success' => true, 'message' => '123']);
+                return $this->asJson(['message' => 'POST-запрос успешно обработан']);
             }
         }
         $arr = $request->post();
