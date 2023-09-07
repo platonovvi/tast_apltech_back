@@ -84,7 +84,7 @@ class UserController extends Controller
         $password = $request->post('password');
 
         $user = new User();
-        return $this->asJson(['success' => true, 'message' => $user]);
+        return $this->asJson(['success' => true, 'message' => $username]);
         /*$user->username = $username;
 
         $user->password = Yii::$app->security->generatePasswordHash($password);
