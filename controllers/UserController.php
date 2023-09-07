@@ -80,12 +80,8 @@ class UserController extends Controller
     {
 
         $request = Yii::$app->getRequest();
-        $params = $request->getBodyParams();
-
-        $username = $params['username'];
-        $password = $params['password'];
-        /*$username = $request->post('username');
-        $password = $request->post('password');*/
+        $username = $request->post('username');
+        $password = $request->post('password');
 
         $user = new User();
         return $this->asJson(['success' => true, 'message' => $user]);
