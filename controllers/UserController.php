@@ -33,7 +33,7 @@ class UserController extends Controller
         $password = $request->post('password');
 
         // Находим пользователя по имени пользователя (username)
-        $user = User::findOne(['username' => $username]);
+        $user = User::findOne(['username' => $request->post()]);
 
         // Если пользователь не найден
         if (!$user) {
