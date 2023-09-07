@@ -7,11 +7,6 @@ use yii\web\IdentityInterface;
 
 class User extends ActiveRecord implements IdentityInterface
 {
-    /**
-     * @var mixed|null
-     */
-    public $username;
-
     public static function tableName()
     {
         return 'cat_users'; // Имя таблицы, хранящей данные пользователей
