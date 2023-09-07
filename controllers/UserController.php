@@ -28,12 +28,12 @@ class UserController extends Controller
     public function actionLogin()
     {
         // Получаем данные из POST-запроса
-        $request = Yii::$app->request;
+        $request = Yii::$app->getRequest();
         $username = $request->post('username');
         $password = $request->post('password');
 
         // Находим пользователя по имени пользователя (username)
-        $user = User::findOne(['username' => $request->post()]);
+        $user = User::findOne(['username' => $username]);
 
         // Если пользователь не найден
         if (!$user) {
@@ -78,12 +78,13 @@ class UserController extends Controller
     public function actionSignup()
     {
 
-        $request = Yii::$app->getRequest();
+        $request = Yii::$app->request;
+        $arr = $request->post();
         $username = $request->post('username');
         $password = $request->post('password');
 
         $user = new User();
-        return $this->asJson(['success' => true, 'message' => $username]);
+        return $this->asJson(['success' => true, 'message' => $arr]);
         /*$user->username = $username;
 
         $user->password = Yii::$app->security->generatePasswordHash($password);
