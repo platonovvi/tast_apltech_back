@@ -11,15 +11,15 @@ class ProductsController extends Controller
     public function actionGetProducts(): Response
     {
         $query = Product::find()->asArray()->all();
-        return $this->asJson($query);
+        return $this->asJson(['success' => true, 'products' => $query]);
     }
 
     public function actionGetProduct($id): Response
     {
-        $product = Product::findOne($id);
-        if ($product === null) {
+        $query = Product::findOne($id);
+        if ($query === null) {
             return $this->asJson(['success' => false, 'message' => 'Продукт не найден']);
         }
-        return $this->asJson(['success' => true, 'product' => $product]);
+        return $this->asJson(['success' => true, 'product' => $query]);
     }
 }
