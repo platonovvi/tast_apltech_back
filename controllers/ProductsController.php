@@ -18,8 +18,8 @@ class ProductsController extends Controller
     {
         $product = Product::findOne($id);
         if ($product === null) {
-            throw new NotFoundHttpException('Продукт не найден');
+            return $this->asJson(['success' => false, 'message' => 'Продукт не найден']);
         }
-        return $this->asJson($product);
+        return $this->asJson(['success' => true, 'product' => $product]);
     }
 }
