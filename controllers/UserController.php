@@ -6,7 +6,6 @@ use Yii;
 use yii\web\Response;
 use yii\web\Request;
 use app\models\User;
-use yii\web\Controller as BaseController;
 
 class UserController extends Controller
 {
@@ -29,7 +28,7 @@ class UserController extends Controller
     public function actionLogin()
     {
         // Получаем данные из POST-запроса
-        $request = Yii::$app->getRequest();
+        $request = Yii::$app->request;
         $username = $request->post('username');
         $password = $request->post('password');
 
