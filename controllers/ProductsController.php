@@ -27,8 +27,17 @@ class ProductsController extends Controller
     {
         $request = Yii::$app->getRequest()->getRawBody();
         $postData = json_decode($request, true);
+
+        $name = $postData['name'];
+        $category_name = $postData['category_name'];
+        $brand_name = $postData['brand_name'];
+        $price = $postData['price'];
+        $rrp_price = $postData['rrp_price'];
+        $status = $postData['status'];
+        $description = $postData['description'];
+
         $product = new Product();
-        return ['success' => true, 'message' => $postData['name']];
+        return ['success' => true, 'message' => $name];
         $product->name = $postData['name'];
         $product->category_name = $postData['category_name'];
         $product->brand_name = $postData['brand_name'];
