@@ -2,7 +2,9 @@
 
 namespace app\controllers;
 
+use Yii;
 use yii\web\Response;
+use yii\web\Request;
 use app\models\Product;
 
 class ProductsController extends Controller
@@ -36,7 +38,7 @@ class ProductsController extends Controller
         $description = $postData['description'];
 
         $product = new Product();
-        return ['success' => true, 'message' => $name];
+
         $product->name = $name;
         $product->category_name = $category_name;
         $product->brand_name = $brand_name;
