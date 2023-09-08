@@ -61,25 +61,19 @@ class UserController extends Controller
 
     public function actionLogout()
     {
-        // Получаем данные из POST-запроса
-        $request = Yii::$app->getRequest();
-        $username = $request->post('username');
-        $password = $request->post('password');
+        $request = Yii::$app->getRequest()->getRawBody();
+        $postData = json_decode($request, true);
 
-        // Находим пользователя по имени пользователя (username)
+        $username = $postData['username'];
         $user = User::findOne(['username' => $username]);
-
-        // Если пользователь не найден
         if (!$user) {
             return ['success' => false, 'message' => 'Пользователь не найден'];
         }
-
+        $password = $postData['password'];
         // Сравниваем пароль пользователя с переданным паролем
         if (Yii::$app->security->validatePassword($password, $user->password)) {
-            // Пароль верный
             return ['success' => true, 'user' => $user];
         } else {
-            // Пароль неверный
             return ['success' => false, 'message' => 'Неверный пароль'];
         }
     }
