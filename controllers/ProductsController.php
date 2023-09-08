@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\User;
 use yii\web\Response;
 use app\models\Product;
 
@@ -24,11 +25,8 @@ class ProductsController extends Controller
 
     public function actionCreate()
     {
-
-        return ['success' => true, 'message' => 'dwq'];
         $request = Yii::$app->getRequest()->getRawBody();
         $postData = json_decode($request, true);
-
         $product = new Product();
         $product->name = $postData['name'];
         $product->category_name = $postData['category_name'];
@@ -37,6 +35,7 @@ class ProductsController extends Controller
         $product->rrp_price = $postData['rrp_price'];
         $product->status = $postData['status'];
         $product->description = $postData['description'];
+        return ['success' => true, 'message' => 'dwq'];
         if ($product->save()) {
             return ['success' => true, 'message' => 'Товар создан!'];
         } else {
