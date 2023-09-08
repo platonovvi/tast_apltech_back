@@ -72,17 +72,17 @@ class UserController extends Controller
         }
     }
 
-    public function actionRefreshToken()
+    public function actionAuth()
     {
-        // Получите текущий токен из заголовка или запроса
-        $currentToken = Yii::$app->getRequest()->getHeaders()->get('Authorization');
-
-        // Проверка, действителен ли текущий токен
-        if (JwtUtility::validateToken($currentToken)) {
-            $newToken = JwtUtility::generateToken(Yii::$app->user->identity);
-            return ['success' => true, 'token' => $newToken];
-        } else {
-            return ['success' => false, 'message' => 'Токен недействителен'];
+        $token = Yii::$app->getRequest()->getHeaders()->get('Authorization');
+        if (!$token) {
+            return ['success' => false, 'message' => 'Отсутствует заголовок Authorization с токеном'];
         }
+        $token = str_replace('Bearer ', '', $token);
+        $user = User::findOne(['api_token' => $token]);
+        if (!$user) {
+            return ['success' => false, 'message' => 'Неверный токен. Пользователь не аутентифицирован'];
+        }
+        return ['success' => true, 'user' => $user];
     }
 }

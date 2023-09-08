@@ -45,7 +45,7 @@ $config = [
                 'user/login' => 'user/login',
                 'user/logout' => 'user/logout',
                 'user/signup' => 'user/signup',
-                'user/refresh_token' => 'user/refresh-token',
+                'user/auth' => 'user/auth',
                 '' => 'site/index',
             ],
         ],
