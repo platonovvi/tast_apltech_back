@@ -72,22 +72,17 @@ class UserController extends Controller
         }
     }
 
-    public function actionLogout()
+    public function actionRefreshToken()
     {
-        $request = Yii::$app->getRequest()->getRawBody();
-        $postData = json_decode($request, true);
+        // Получите текущий токен из заголовка или запроса
+        $currentToken = Yii::$app->getRequest()->getHeaders()->get('Authorization');
 
-        $username = $postData['username'];
-        $user = User::findOne(['username' => $username]);
-        if (!$user) {
-            return ['success' => false, 'message' => 'Пользователь не найден'];
-        }
-        $password = $postData['password'];
-        // Сравниваем пароль пользователя с переданным паролем
-        if (Yii::$app->security->validatePassword($password, $user->password)) {
-            return ['success' => true, 'user' => $user];
+        // Проверка, действителен ли текущий токен
+        if (JwtUtility::validateToken($currentToken)) {
+            $newToken = JwtUtility::generateToken(Yii::$app->user->identity);
+            return ['success' => true, 'token' => $newToken];
         } else {
-            return ['success' => false, 'message' => 'Неверный пароль'];
+            return ['success' => false, 'message' => 'Токен недействителен'];
         }
     }
 }
