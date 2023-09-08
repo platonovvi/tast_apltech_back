@@ -84,11 +84,21 @@ class UserController extends Controller
         if (!$token) {
             return ['success' => false, 'message' => 'Отсутствует заголовок Authorization с токеном'];
         }
+
         $token = str_replace('Bearer ', '', $token);
-        $user = User::findOne(['api_token' => $token]);
-        if (!$user) {
+
+        // Проверка подписи токена с использованием секретного ключа
+        $secretKey = 'ваш_секретный_ключ_здесь'; // Получите секретный ключ из вашей базы данных или конфигурационного файла
+
+        try {
+            $payload = JWT::decode($token, $secretKey, ['HS256']);
+        } catch (Exception $e) {
             return ['success' => false, 'message' => 'Неверный токен. Пользователь не аутентифицирован'];
         }
-        return ['success' => true, 'user' => $user];
+
+        // В этой точке, если исключения не было, токен верный и вы можете продолжить работу с пользователем
+        // $payload содержит информацию о пользователе
+
+        return ['success' => true, 'user' => $payload];
     }
 }
