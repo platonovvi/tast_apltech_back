@@ -62,11 +62,17 @@ class UserController extends Controller
         $user = new User();
         $user->username = $username;
         $user->password = Yii::$app->security->generatePasswordHash($password);
-        // Генерация и сохранение api_token
-        $user->api_token = Yii::$app->security->generateRandomString(64);
-
+        // Генерация $secretKey
+        $secretKey = Yii::$app->security->generateRandomString(64);
+        $user->api_token = $secretKey;
         if ($user->save()) {
-            return ['success' => true, 'message' => 'Регистрация прошла успешно!', 'api_token' => $user->api_token, 'user' => $user];
+            // Создайте полезную нагрузку для JWT токена
+            $payload = [
+                'sub' => $user->id,
+                'exp' => time() + 3600, // Время истечения токена (1 час)
+            ];
+            $api_token = Yii::$app->getSecurity()->hashData(json_encode($payload), $secretKey);
+            return ['success' => true, 'message' => 'Регистрация прошла успешно!', 'api_token' => $api_token, 'user' => $user];
         } else {
             return ['success' => false, 'message' => 'Ошибка при создании пользователя'];
         }
