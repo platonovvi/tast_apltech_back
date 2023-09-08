@@ -25,14 +25,6 @@ class UserController extends Controller
             ],
         ];
     }*/
-    private function jsonResponse($success, $message, $query = [])
-    {
-        return [
-            'success' => $success,
-            'message' => $message,
-            'query' => $query,
-        ];
-    }
 
     public function actionLogin()
     {
@@ -47,7 +39,10 @@ class UserController extends Controller
         $password = $postData['password'];
         // Сравниваем пароль пользователя с переданным паролем
         if (Yii::$app->security->validatePassword($password, $user->password)) {
-            return ['success' => true, null, 'user' => $user];
+            $token = Yii::$app->security->generateRandomString(64);
+            $user->api_token = $token;
+            $user->save();
+            return ['success' => true, 'api_token' => $token, 'user' => $user];
         } else {
             return ['success' => false, 'message' => 'Неверный пароль'];
         }
@@ -60,7 +55,7 @@ class UserController extends Controller
 
         $username = $postData['username'];
         if (User::findOne(['username' => $username])) {
-            return $this->jsonResponse(false, 'Пользователь уже существует');
+            return ['success' => false, 'message' => 'Пользователь уже существует'];
         }
         $password = $postData['password'];
 
@@ -71,11 +66,9 @@ class UserController extends Controller
         $user->api_token = Yii::$app->security->generateRandomString(64);
 
         if ($user->save()) {
-            return $this->jsonResponse(true, 'Регистрация прошла успешно!',
-                ['api_token' => $user->api_token,
-                    'user' => $user,]);
+            return ['success' => true, 'message' => 'Регистрация прошла успешно!', 'api_token' => $user->api_token, 'user' => $user];
         } else {
-            return $this->jsonResponse(false, 'Ошибка при создании пользователя');
+            return ['success' => false, 'message' => 'Ошибка при создании пользователя'];
         }
     }
 
