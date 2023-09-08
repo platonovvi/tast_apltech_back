@@ -36,25 +36,19 @@ class UserController extends Controller
 
     public function actionLogin()
     {
-        // Получаем данные из POST-запросаv
-        $request = Yii::$app->getRequest();
-        $username = $request->post('username');
-        $password = $request->post('password');
-        return ['success' => false, 'message' => $username];
-        // Находим пользователя по имени пользователя (username)
-        $user = User::findOne(['username' => $username]);
+        $request = Yii::$app->getRequest()->getRawBody();
+        $postData = json_decode($request, true);
 
-        // Если пользователь не найден
+        $username = $postData['username'];
+        $user = User::findOne(['username' => $username]);
         if (!$user) {
             return ['success' => false, 'message' => 'Пользователь не найден'];
         }
-
+        $password = $postData['password'];
         // Сравниваем пароль пользователя с переданным паролем
         if (Yii::$app->security->validatePassword($password, $user->password)) {
-            // Пароль верный
-            return ['success' => true, 'user' => $user];
+            return ['success' => true, null, 'user' => $user];
         } else {
-            // Пароль неверный
             return ['success' => false, 'message' => 'Неверный пароль'];
         }
     }
