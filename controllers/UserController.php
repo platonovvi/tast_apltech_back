@@ -25,9 +25,19 @@ class UserController extends Controller
             ],
         ];
     }*/
+    private function jsonResponse($success, $message, $data = [])
+    {
+        //Yii::$app->response->format = Response::FORMAT_JSON;
+        return [
+            'success' => $success,
+            'message' => $message,
+            'data' => $data,
+        ];
+    }
+
     public function actionLogin()
     {
-        // Получаем данные из POST-запроса
+        // Получаем данные из POST-запросаv
         $request = Yii::$app->getRequest();
         $username = $request->post('username');
         $password = $request->post('password');
@@ -79,16 +89,26 @@ class UserController extends Controller
     {
         $request = Yii::$app->getRequest()->getRawBody();
         $postData = json_decode($request, true);
+
         $username = $postData['username'];
+        if (!$username) {
+            return $this->jsonResponse(false, 'Введите Логин');
+        }
+        if (User::findOne(['username' => $username])) {
+            return $this->jsonResponse(false, 'Пользователь уже существует');
+        }
         $password = $postData['password'];
+        if (!$password) {
+            return $this->jsonResponse(false, 'Введите пароль');
+        }
 
         $user = new User();
         $user->username = $username;
         $user->password = Yii::$app->security->generatePasswordHash($password);
         if ($user->save()) {
-            return $this->asJson(['success' => true, 'message' => 'Пользователь успешно создан', 'user' => $user]);
+            return $this->jsonResponse(true, 'Пользователь успешно создан', ['user' => $user]);
         } else {
-            return $this->asJson(['success' => false, 'message' => 'Ошибка при создании пользователя', 'errors' => $user->getErrors()]);
+            return $this->jsonResponse(false, 'Ошибка при создании пользователя');
         }
     }
 }
