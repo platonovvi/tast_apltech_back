@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use app\models\User;
 use yii\web\Response;
 use app\models\Product;
 
@@ -38,13 +37,13 @@ class ProductsController extends Controller
 
         $product = new Product();
         return ['success' => true, 'message' => $name];
-        $product->name = $postData['name'];
-        $product->category_name = $postData['category_name'];
-        $product->brand_name = $postData['brand_name'];
-        $product->price = $postData['price'];
-        $product->rrp_price = $postData['rrp_price'];
-        $product->status = $postData['status'];
-        $product->description = $postData['description'];
+        $product->name = $name;
+        $product->category_name = $category_name;
+        $product->brand_name = $brand_name;
+        $product->price = $price;
+        $product->rrp_price = $rrp_price;
+        $product->status = $status;
+        $product->description = $description;
         if ($product->save()) {
             return ['success' => true, 'message' => 'Товар создан!'];
         } else {
