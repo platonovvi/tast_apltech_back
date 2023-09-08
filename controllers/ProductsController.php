@@ -4,7 +4,6 @@ namespace app\controllers;
 
 use yii\web\Response;
 use app\models\Product;
-use yii\web\NotFoundHttpException;
 
 class ProductsController extends Controller
 {

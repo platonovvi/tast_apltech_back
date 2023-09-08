@@ -67,8 +67,13 @@ class UserController extends Controller
         $user = new User();
         $user->username = $username;
         $user->password = Yii::$app->security->generatePasswordHash($password);
+        // Генерация и сохранение api_token
+        $user->api_token = Yii::$app->security->generateRandomString(64);
+
         if ($user->save()) {
-            return $this->jsonResponse(true, 'Регистрация прошла успешно!', $user);
+            return $this->jsonResponse(true, 'Регистрация прошла успешно!',
+                ['api_token' => $user->api_token,
+                    'user' => $user,]);
         } else {
             return $this->jsonResponse(false, 'Ошибка при создании пользователя');
         }
