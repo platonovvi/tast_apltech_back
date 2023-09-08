@@ -77,7 +77,6 @@ class UserController extends Controller
 
     public function actionSignup()
     {
-
         $request = Yii::$app->getRequest()->getRawBody();
         $postData = json_decode($request, true);
         $username = $postData['username'];
@@ -86,6 +85,7 @@ class UserController extends Controller
         $user = new User();
         $user->username = $username;
         $user->password = Yii::$app->security->generatePasswordHash($password);
+        return $this->asJson(['success' => true, 'message' => $user]);
         if ($user->save()) {
             return $this->asJson(['success' => true, 'message' => 'Пользователь успешно создан']);
         } else {
