@@ -40,7 +40,7 @@ class UserController extends Controller
         $request = Yii::$app->getRequest();
         $username = $request->post('username');
         $password = $request->post('password');
-
+        return ['success' => false, 'message' => $username];
         // Находим пользователя по имени пользователя (username)
         $user = User::findOne(['username' => $username]);
 
@@ -55,25 +55,6 @@ class UserController extends Controller
             return ['success' => true, 'user' => $user];
         } else {
             // Пароль неверный
-            return ['success' => false, 'message' => 'Неверный пароль'];
-        }
-    }
-
-    public function actionLogout()
-    {
-        $request = Yii::$app->getRequest()->getRawBody();
-        $postData = json_decode($request, true);
-
-        $username = $postData['username'];
-        $user = User::findOne(['username' => $username]);
-        if (!$user) {
-            return ['success' => false, 'message' => 'Пользователь не найден'];
-        }
-        $password = $postData['password'];
-        // Сравниваем пароль пользователя с переданным паролем
-        if (Yii::$app->security->validatePassword($password, $user->password)) {
-            return ['success' => true, 'user' => $user];
-        } else {
             return ['success' => false, 'message' => 'Неверный пароль'];
         }
     }
@@ -96,6 +77,25 @@ class UserController extends Controller
             return $this->jsonResponse(true, 'Регистрация прошла успешно!', $user);
         } else {
             return $this->jsonResponse(false, 'Ошибка при создании пользователя');
+        }
+    }
+
+    public function actionLogout()
+    {
+        $request = Yii::$app->getRequest()->getRawBody();
+        $postData = json_decode($request, true);
+
+        $username = $postData['username'];
+        $user = User::findOne(['username' => $username]);
+        if (!$user) {
+            return ['success' => false, 'message' => 'Пользователь не найден'];
+        }
+        $password = $postData['password'];
+        // Сравниваем пароль пользователя с переданным паролем
+        if (Yii::$app->security->validatePassword($password, $user->password)) {
+            return ['success' => true, 'user' => $user];
+        } else {
+            return ['success' => false, 'message' => 'Неверный пароль'];
         }
     }
 }
