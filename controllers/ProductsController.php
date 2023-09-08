@@ -24,6 +24,8 @@ class ProductsController extends Controller
 
     public function actionCreate()
     {
+
+        return ['success' => true, 'message' => 'dwq'];
         $request = Yii::$app->getRequest()->getRawBody();
         $postData = json_decode($request, true);
 
