@@ -21,4 +21,24 @@ class ProductsController extends Controller
         }
         return $this->asJson(['success' => true, 'product' => $query]);
     }
+
+    public function actionCreate()
+    {
+        $request = Yii::$app->getRequest()->getRawBody();
+        $postData = json_decode($request, true);
+
+        $product = new Product();
+        $product->name = $postData['name'];
+        $product->category_name = $postData['category_name'];
+        $product->brand_name = $postData['brand_name'];
+        $product->price = $postData['price'];
+        $product->rrp_price = $postData['rrp_price'];
+        $product->status = $postData['status'];
+        $product->description = $postData['description'];
+        if ($product->save()) {
+            return ['success' => true, 'message' => 'Товар создан!'];
+        } else {
+            return ['success' => false, 'message' => 'Ошибка при создании пользователя'];
+        }
+    }
 }
