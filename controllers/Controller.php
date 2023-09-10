@@ -47,7 +47,7 @@ class Controller extends BaseController
                                 $user = User::findOne(['id' => $payload->sub]);
                                 return $user !== null;
                             } catch (\Exception $e) {
-                                return ['success' => false, 'message' => 'Нет доступа'];
+                                return false;
                             }
                         },
                     ],
