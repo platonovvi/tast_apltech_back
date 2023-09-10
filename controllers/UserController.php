@@ -23,7 +23,6 @@ class UserController extends Controller
         $algorithm = ['HS256'];
         try {
             $payload = JWT::decode($token, new Key($secretKey, 'HS256'));
-            return ['success' => false, 'message' => ['token' => $token, 'secretKey' => $secretKey, 'algorithm' => $algorithm]];
             // Проверьте, что токен успешно декодирован
             if ($payload) {
                 // Верните успешный результат и информацию о пользователе из полезной нагрузки
