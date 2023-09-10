@@ -50,8 +50,11 @@ class UserController extends Controller
         $password = $postData['password'];
         // Сравниваем пароль пользователя с переданным паролем
         if (Yii::$app->security->validatePassword($password, $user->password)) {
-            $token = Yii::$app->security->generateRandomString(64);
-            $user->api_token = $token;
+            if (!$user->api_token) {
+                $token = $this->generateJwtToken($user);
+                $user->api_token = $token;
+            }
+            $token = $user->api_token;
             $user->save();
             return ['success' => true, 'api_token' => $token, 'user' => $user];
         } else {
