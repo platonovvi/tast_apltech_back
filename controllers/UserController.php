@@ -20,10 +20,10 @@ class UserController extends Controller
 
         $token = str_replace('Bearer ', '', $token);
         $secretKey = getenv('SECRET_KEY_JWT');
-
+        $algorithm = 'HS256';
         try {
             // Попробуйте декодировать токен
-            $payload = \Firebase\JWT\JWT::decode($token, $secretKey, ['HS256']);
+            $payload = \Firebase\JWT\JWT::decode($token, $secretKey, $algorithm);
 
             // Проверьте, что токен успешно декодирован
             if ($payload) {
