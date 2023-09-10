@@ -99,10 +99,9 @@ class UserController extends Controller
         $user->password = Yii::$app->security->generatePasswordHash($password);
 
         $secretKey = getenv('SECRET_KEY');
-
+        return ['success' => false, 'message' => $secretKey];
         $user->api_token = $this->generateJwtToken($user, $secretKey);
 
-        return ['success' => false, 'message' => '12312'];
         if ($user->save()) {
             return ['success' => true, 'message' => 'Регистрация прошла успешно!', 'api_token' => $user->api_token, 'user' => $user];
         } else {
