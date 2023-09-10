@@ -16,7 +16,6 @@ class m210828_123456_create_users_table extends Migration
             'id' => $this->primaryKey(),
             'username' => $this->string()->notNull()->unique()->comment('Логин пользователя'),
             'password' => $this->string()->notNull()->comment('Пароль'),
-            'api_token' => $this->string()->comment('JWT'),
             'created_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
             'updated_at' => $this->timestamp(),
         ]);
