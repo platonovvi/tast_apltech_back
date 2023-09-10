@@ -62,36 +62,6 @@ class UserController extends Controller
         }
     }
 
-    /*public function actionSignup()
-    {
-        $request = Yii::$app->getRequest()->getRawBody();
-        $postData = json_decode($request, true);
-
-        $username = $postData['username'];
-        if (User::findOne(['username' => $username])) {
-            return ['success' => false, 'message' => 'Пользователь уже существует'];
-        }
-        $password = $postData['password'];
-
-        $user = new User();
-        $user->username = $username;
-        $user->password = Yii::$app->security->generatePasswordHash($password);
-        // Генерация $secretKey
-        $secretKey = Yii::$app->security->generateRandomString(64);
-        $user->api_token = $secretKey;
-        if ($user->save()) {
-            // Создайте полезную нагрузку для JWT токена
-            $payload = [
-                'sub' => $user->id,
-                'exp' => time() + 3600, // Время истечения токена (1 час)
-            ];
-            $api_token = Yii::$app->getSecurity()->hashData(json_encode($payload), $secretKey);
-            return ['success' => true, 'message' => 'Регистрация прошла успешно!', 'api_token' => $api_token, 'user' => $user];
-        } else {
-            return ['success' => false, 'message' => 'Ошибка при создании пользователя'];
-        }
-    }*/
-
     public function actionSignup()
     {
         $request = Yii::$app->getRequest()->getRawBody();
@@ -122,7 +92,7 @@ class UserController extends Controller
         $secretKey = getenv('SECRET_KEY_JWT');
         $payload = [
             'sub' => $user->id,
-            'exp' => time() + 3600, // Время истечения токена (1 час)
+            'exp' => time() + 36, // Время истечения токена (1 час)
         ];
 
         return JWT::encode($payload, $secretKey, 'HS256');
