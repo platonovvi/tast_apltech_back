@@ -7,6 +7,7 @@ use yii\web\Response;
 use yii\web\Request;
 use app\models\User;
 use \Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class UserController extends Controller
 {
@@ -21,7 +22,7 @@ class UserController extends Controller
         $secretKey = getenv('SECRET_KEY_JWT');
         $algorithm = ['HS256'];
         try {
-            $payload = JWT::decode($token, $secretKey, $algorithm);
+            $payload = JWT::decode($token, new Key($secretKey, 'HS256'));
             return ['success' => false, 'message' => ['token' => $token, 'secretKey' => $secretKey, 'algorithm' => $algorithm]];
             // Проверьте, что токен успешно декодирован
             if ($payload) {
