@@ -32,7 +32,6 @@ class Controller extends BaseController
                         'actions' => ['product/create'],
                         'allow' => true,
                         'matchCallback' => function ($rule, $action) {
-                            return '12312';
                             // Ваш код проверки JWT токена
                             $token = Yii::$app->getRequest()->getHeaders()->get('Authorization');
                             if (!$token) {
