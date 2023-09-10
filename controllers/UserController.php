@@ -85,8 +85,6 @@ class UserController extends Controller
 
     public function actionSignup()
     {
-
-        return ['success' => false, 'message' => '12312'];
         $request = Yii::$app->getRequest()->getRawBody();
         $postData = json_decode($request, true);
 
@@ -98,6 +96,7 @@ class UserController extends Controller
 
         $user = new User();
         $user->username = $username;
+        return ['success' => false, 'message' => '12312'];
         $user->password = Yii::$app->security->generatePasswordHash($password);
 
         $secretKey = getenv('SECRET_KEY');
