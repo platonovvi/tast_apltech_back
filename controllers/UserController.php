@@ -20,15 +20,14 @@ class UserController extends Controller
 
         $token = str_replace('Bearer ', '', $token);
         $secretKey = getenv('SECRET_KEY_JWT');
-        $algorithm = ['HS256'];
         try {
             $payload = JWT::decode($token, new Key($secretKey, 'HS256'));
-            // Проверьте, что токен успешно декодирован
-            if ($payload) {
-                // Верните успешный результат и информацию о пользователе из полезной нагрузки
-                return ['success' => true, 'user' => $payload];
+            $apiToken = $payload->api_token;
+            $user = User::findOne(['api_token' => $apiToken]);
+            if ($user) {
+                return ['success' => true, 'user' => $user];
             } else {
-                return ['success' => false, 'message' => 'Неверный токен. Пользователь не аутентифицирован'];
+                return ['success' => false, 'message' => 'Пользователь не найден'];
             }
         } catch (\Firebase\JWT\ExpiredException $e) {
             return ['success' => false, 'message' => 'Истек срок действия токена'];
@@ -106,9 +105,10 @@ class UserController extends Controller
         $user->username = $username;
         $user->password = Yii::$app->security->generatePasswordHash($password);
 
-        $api_token = $this->generateJwtToken($user);
-        $user->api_token = $api_token;
         if ($user->save()) {
+            $api_token = $this->generateJwtToken($user);
+            $user->api_token = $api_token;
+            $user->save();
             return ['success' => true, 'message' => 'Регистрация прошла успешно!', 'api_token' => $user->api_token, 'user' => $user];
         } else {
             return ['success' => false, 'message' => 'Ошибка при создании пользователя'];
