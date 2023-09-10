@@ -98,7 +98,7 @@ class UserController extends Controller
         $user->username = $username;
         $user->password = Yii::$app->security->generatePasswordHash($password);
 
-        $secretKey = getenv('SECRET_KEY');
+        $secretKey = getenv('SECRET_KEY_JWT');
         return ['success' => false, 'message' => $secretKey];
         $user->api_token = $this->generateJwtToken($user, $secretKey);
 
