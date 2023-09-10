@@ -80,14 +80,12 @@ class UserController extends Controller
 
     public function actionAuth()
     {
-        return ['success' => false, 'message' => 'Неверный токен. Пользователь не аутентифицирован'];
         $token = Yii::$app->getRequest()->getHeaders()->get('Authorization');
         if (!$token) {
             return ['success' => false, 'message' => 'Отсутствует заголовок Authorization с токеном'];
         }
-
         $token = str_replace('Bearer ', '', $token);
-
+        return ['success' => false, 'message' => $token];
         $secretKey = getenv('SECRET_KEY'); // Получение секретного ключа из переменной окружения
 
         try {
