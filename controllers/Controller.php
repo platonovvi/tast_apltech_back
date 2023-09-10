@@ -38,7 +38,10 @@ class Controller extends BaseController
 
                             $token = str_replace('Bearer ', '', $token);
                             if (!$token) {
-                                return false;
+                                return [
+                                    'success' => false,
+                                    'message' => 'Нет доступа',
+                                ];
                             }
                             $secretKey = getenv('SECRET_KEY_JWT');
 
@@ -47,7 +50,10 @@ class Controller extends BaseController
                                 $user = User::findOne(['id' => $payload->sub]);
                                 return $user !== null;
                             } catch (\Exception $e) {
-                                return false;
+                                return [
+                                    'success' => false,
+                                    'message' => 'Нет доступа',
+                                ];
                             }
                         },
                     ],
