@@ -33,7 +33,7 @@ class ProductsController extends Controller
         $jwtData = Yii::$app->getRequest()->getHeaders()->get('jwtData');
         if ($jwtData && isset($jwtData['success'])) {
             if (!$jwtData['success']) {
-                return $jwtData['message'];
+                return ['success' => false, 'message' => $jwtData['success']];
             }
         }
         $request = Yii::$app->getRequest()->getRawBody();
