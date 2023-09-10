@@ -92,7 +92,7 @@ class UserController extends Controller
         $secretKey = getenv('SECRET_KEY_JWT');
         $payload = [
             'sub' => $user->id,
-            'exp' => time() + 36, // Время истечения токена (1 час)
+            'exp' => time() + 3600, // Время истечения токена (1 час)
         ];
 
         return JWT::encode($payload, $secretKey, 'HS256');
