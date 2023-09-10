@@ -6,6 +6,7 @@ use Yii;
 use yii\web\Response;
 use yii\web\Request;
 use app\models\User;
+use \Firebase\JWT\JWT;
 
 class UserController extends Controller
 {
