@@ -22,14 +22,16 @@ class UserController extends Controller
         $secretKey = getenv('SECRET_KEY_JWT');
         try {
             $payload = JWT::decode($token, new Key($secretKey, 'HS256'));
-            $user = User::findOne(['api_token' => $token]);
+            $userId = $payload->sub;
+            $user = User::findOne(['id' => $userId]);
+            //$user = User::findOne(['api_token' => $token]);
             if ($user) {
                 return ['success' => true, 'user' => $user];
             } else {
                 return ['success' => false, 'message' => 'Пользователь не найден'];
             }
         } catch (\Firebase\JWT\ExpiredException $e) {
-            return ['success' => false, 'message' => 'Истек срок действия токена'];
+            return ['success' => false, 'message' => 'Срок действия сеанса истёк, авторизуйтесь заново'];
         } catch (\Firebase\JWT\SignatureInvalidException $e) {
             return ['success' => false, 'message' => 'Неверная подпись токена'];
         } catch (\Exception $e) {
