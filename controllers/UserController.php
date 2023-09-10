@@ -21,7 +21,9 @@ class UserController extends Controller
         $token = str_replace('Bearer ', '', $token);
         $secretKey = getenv('SECRET_KEY_JWT');
         $payload = JWT::decode($token, new Key($secretKey, 'HS256'));
-        return ['success' => true, 'user' => $payload];
+        $userId = $payload->sub;
+        $user = User::findOne(['id' => $userId]);
+        return ['success' => true, 'user' => $user];
         try {
             $payload = JWT::decode($token, new Key($secretKey, 'HS256'));
             $userId = $payload->sub;
@@ -57,7 +59,6 @@ class UserController extends Controller
         if (Yii::$app->security->validatePassword($password, $user->password)) {
             $token = $this->generateJwtToken($user);
             $user->api_token = $token;
-            $token = $user->api_token;
             $user->save();
             return ['success' => true, 'api_token' => $token, 'user' => $user];
         } else {
