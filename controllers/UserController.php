@@ -9,22 +9,27 @@ use app\models\User;
 
 class UserController extends Controller
 {
-    /*public function behaviors()
+    public function actionAuth()
     {
-        return [
-            'access' => [
-                'class' => 'yii\filters\AccessControl',
-                'rules' => [
-                    [
-                        'actions' => ['get-users'],
-                        'allow' => true,
-                        'roles' => ['admin'], // Примерная роль для доступа
-                    ],
-                    // Другие правила...
-                ],
-            ],
-        ];
-    }*/
+        $token = Yii::$app->getRequest()->getHeaders()->get('Authorization');
+        if (!$token) {
+            return ['success' => false, 'message' => 'Отсутствует заголовок Authorization с токеном'];
+        }
+        $token = str_replace('Bearer ', '', $token);
+        $secretKey = getenv('SECRET_KEY');
+        $algorithm = 'HS256';
+        try {
+            $payload = \Firebase\JWT\JWT::decode($token, $secretKey, $algorithm);
+        } catch (\Firebase\JWT\ExpiredException $e) {
+            return ['success' => false, 'message' => 'Истек срок действия токена'];
+        } catch (\Firebase\JWT\SignatureInvalidException $e) {
+            return ['success' => false, 'message' => 'Неверная подпись токена'];
+        } catch (\Exception $e) {
+            return ['success' => false, 'message' => 'Неверный токен. Пользователь не аутентифицирован'];
+        }
+
+        return ['success' => true, 'user' => $payload];
+    }
 
     public function actionLogin()
     {
@@ -48,7 +53,7 @@ class UserController extends Controller
         }
     }
 
-    public function actionSignup()
+    /*public function actionSignup()
     {
         $request = Yii::$app->getRequest()->getRawBody();
         $postData = json_decode($request, true);
@@ -76,27 +81,41 @@ class UserController extends Controller
         } else {
             return ['success' => false, 'message' => 'Ошибка при создании пользователя'];
         }
+    }*/
+
+    public function actionSignup()
+    {
+        $request = Yii::$app->getRequest()->getRawBody();
+        $postData = json_decode($request, true);
+
+        $username = $postData['username'];
+        if (User::findOne(['username' => $username])) {
+            return ['success' => false, 'message' => 'Пользователь уже существует'];
+        }
+        $password = $postData['password'];
+
+        $user = new User();
+        $user->username = $username;
+        $user->password = Yii::$app->security->generatePasswordHash($password);
+
+        $secretKey = getenv('SECRET_KEY');
+
+        $user->api_token = $this->generateJwtToken($user, $secretKey);
+
+        if ($user->save()) {
+            return ['success' => true, 'message' => 'Регистрация прошла успешно!', 'api_token' => $user->api_token, 'user' => $user];
+        } else {
+            return ['success' => false, 'message' => 'Ошибка при создании пользователя'];
+        }
     }
 
-    public function actionAuth()
+    private function generateJwtToken($user, $secretKey)
     {
-        $token = Yii::$app->getRequest()->getHeaders()->get('Authorization');
-        if (!$token) {
-            return ['success' => false, 'message' => 'Отсутствует заголовок Authorization с токеном'];
-        }
-        $token = str_replace('Bearer ', '', $token);
-        $secretKey = getenv('SECRET_KEY');
-        $algorithm = 'HS256';
-        try {
-            $payload = \Firebase\JWT\JWT::decode($token, $secretKey, $algorithm);
-        } catch (\Firebase\JWT\ExpiredException $e) {
-            return ['success' => false, 'message' => 'Истек срок действия токена'];
-        } catch (\Firebase\JWT\SignatureInvalidException $e) {
-            return ['success' => false, 'message' => 'Неверная подпись токена'];
-        } catch (\Exception $e) {
-            return ['success' => false, 'message' => 'Неверный токен. Пользователь не аутентифицирован'];
-        }
+        $payload = [
+            'sub' => $user->id,
+            'exp' => time() + 3600, // Время истечения токена (1 час)
+        ];
 
-        return ['success' => true, 'user' => $payload];
+        return JWT::encode($payload, $secretKey, 'HS256');
     }
 }
