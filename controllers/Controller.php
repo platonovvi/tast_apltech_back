@@ -26,10 +26,10 @@ class Controller extends BaseController
             ],
             'jwtFilter' => [
                 'class' => AccessControl::class,
-                'only' => ['user/auth'],
+                'only' => ['product/create'],
                 'rules' => [
                     [
-                        'actions' => ['user/auth'],
+                        'actions' => ['product/create'],
                         'allow' => true,
                         'matchCallback' => function ($rule, $action) {
                             // Ваш код проверки JWT токена
