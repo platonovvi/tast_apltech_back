@@ -84,10 +84,9 @@ class UserController extends Controller
         if (!$token) {
             return ['success' => false, 'message' => 'Отсутствует заголовок Authorization с токеном'];
         }
-        $token = str_replace('Bearer ', '', $token);
         return ['success' => false, 'message' => $token];
         $secretKey = getenv('SECRET_KEY'); // Получение секретного ключа из переменной окружения
-
+        $token = str_replace('Bearer ', '', $secretKey);
         try {
             $payload = \Firebase\JWT\JWT::decode($token, $secretKey, ['HS256']);
         } catch (\Firebase\JWT\ExpiredException $e) {
