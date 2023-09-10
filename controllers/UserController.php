@@ -96,13 +96,13 @@ class UserController extends Controller
 
         $user = new User();
         $user->username = $username;
-        return ['success' => false, 'message' => '12312'];
         $user->password = Yii::$app->security->generatePasswordHash($password);
 
         $secretKey = getenv('SECRET_KEY');
 
         $user->api_token = $this->generateJwtToken($user, $secretKey);
 
+        return ['success' => false, 'message' => '12312'];
         if ($user->save()) {
             return ['success' => true, 'message' => 'Регистрация прошла успешно!', 'api_token' => $user->api_token, 'user' => $user];
         } else {
