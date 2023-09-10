@@ -89,7 +89,6 @@ class UserController extends Controller
         $algorithm = 'HS256';
         try {
             $payload = \Firebase\JWT\JWT::decode($token, $secretKey, $algorithm);
-            return ['success' => false, 'message' => $token];
         } catch (\Firebase\JWT\ExpiredException $e) {
             return ['success' => false, 'message' => 'Истек срок действия токена'];
         } catch (\Firebase\JWT\SignatureInvalidException $e) {
@@ -97,20 +96,6 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return ['success' => false, 'message' => 'Неверный токен. Пользователь не аутентифицирован'];
         }
-
-        $token = str_replace('Bearer ', '', $token);
-
-        // Проверка подписи токена с использованием секретного ключа
-        $secretKey = 'ваш_секретный_ключ_здесь'; // Получите секретный ключ из вашей базы данных или конфигурационного файла
-
-        try {
-            $payload = JWT::decode($token, $secretKey, ['HS256']);
-        } catch (Exception $e) {
-            return ['success' => false, 'message' => 'Неверный токен. Пользователь не аутентифицирован'];
-        }
-
-        // В этой точке, если исключения не было, токен верный и вы можете продолжить работу с пользователем
-        // $payload содержит информацию о пользователе
 
         return ['success' => true, 'user' => $payload];
     }
