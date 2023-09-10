@@ -19,9 +19,8 @@ class UserController extends Controller
 
         $token = str_replace('Bearer ', '', $token);
         $secretKey = getenv('SECRET_KEY_JWT');
-        $algorithm = 'HS256';
+        $algorithm = ['HS256'];
         try {
-            return ['success' => false, 'message' => '12312'];
             $payload = JWT::decode($token, $secretKey, $algorithm);
             return ['success' => false, 'message' => $payload];
             // Проверьте, что токен успешно декодирован
