@@ -6,6 +6,9 @@ use Yii;
 use yii\web\Response;
 use yii\web\Request;
 use app\models\Product;
+use \Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+use app\models\User;
 
 class ProductsController extends Controller
 {
