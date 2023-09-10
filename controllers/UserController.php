@@ -85,9 +85,10 @@ class UserController extends Controller
             return ['success' => false, 'message' => 'Отсутствует заголовок Authorization с токеном'];
         }
         $token = str_replace('Bearer ', '', $token);
-        $secretKey = getenv('SECRET_KEY'); // Получение секретного ключа из переменной окружения
+        $secretKey = getenv('SECRET_KEY');
+        $algorithm = 'HS256';
         try {
-            $payload = \Firebase\JWT\JWT::decode($token, $secretKey, ['HS256']);
+            $payload = \Firebase\JWT\JWT::decode($token, $secretKey, $algorithm);
             return ['success' => false, 'message' => $token];
         } catch (\Firebase\JWT\ExpiredException $e) {
             return ['success' => false, 'message' => 'Истек срок действия токена'];
