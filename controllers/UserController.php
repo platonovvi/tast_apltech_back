@@ -100,7 +100,7 @@ class UserController extends Controller
 
         $secretKey = getenv('SECRET_KEY_JWT');
         $user->api_token = $this->generateJwtToken($user, $secretKey);
-
+        return ['success' => false, 'message' => $user];
         if ($user->save()) {
             return ['success' => true, 'message' => 'Регистрация прошла успешно!', 'api_token' => $user->api_token, 'user' => $user];
         } else {
