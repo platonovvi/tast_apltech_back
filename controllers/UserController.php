@@ -23,6 +23,7 @@ class UserController extends Controller
         try {
             $payload = JWT::decode($token, new Key($secretKey, 'HS256'));
             $userId = $payload->sub;
+            return ['success' => true, 'user' => $payload];
             $user = User::findOne(['id' => $userId]);
 
             //$user = User::findOne(['api_token' => $token]);
@@ -53,10 +54,8 @@ class UserController extends Controller
         $password = $postData['password'];
         // Сравниваем пароль пользователя с переданным паролем
         if (Yii::$app->security->validatePassword($password, $user->password)) {
-            if (!$user->api_token) {
-                $token = $this->generateJwtToken($user);
-                $user->api_token = $token;
-            }
+            $token = $this->generateJwtToken($user);
+            $user->api_token = $token;
             $token = $user->api_token;
             $user->save();
             return ['success' => true, 'api_token' => $token, 'user' => $user];
