@@ -2,8 +2,13 @@
 
 namespace app\controllers;
 
+use Yii;
 use yii\web\Controller as BaseController;
 use yii\filters\Cors;
+use \Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+use app\models\User;
+use yii\filters\AccessControl;
 
 class Controller extends BaseController
 {
@@ -18,6 +23,34 @@ class Controller extends BaseController
                     'Access-Control-Request-Headers' => ['*'],
                     'Access-Control-Allow-Credentials' => true,
                     'Access-Control-Max-Age' => 86400,
+                ],
+            ],
+            'jwtFilter' => [
+                'class' => AccessControl::class,
+                'only' => ['create'], // Название вашего действия без префикса "action"
+                'rules' => [
+                    [
+                        'actions' => ['create'], // Название вашего действия без префикса "action"
+                        'allow' => true,
+                        'matchCallback' => function ($rule, $action) {
+                            // Ваш код проверки JWT токена
+                            $token = Yii::$app->getRequest()->getHeaders()->get('Authorization');
+                            if (!$token) {
+                                return false;
+                            }
+
+                            $token = str_replace('Bearer ', '', $token);
+                            $secretKey = getenv('SECRET_KEY_JWT');
+
+                            try {
+                                $payload = JWT::decode($token, new Key($secretKey, 'HS256'));
+                                $user = User::findOne(['id' => $payload->sub]);
+                                return $user !== null;
+                            } catch (\Exception $e) {
+                                return false;
+                            }
+                        },
+                    ],
                 ],
             ],
         ];
