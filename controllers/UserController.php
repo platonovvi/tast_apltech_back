@@ -101,7 +101,7 @@ class UserController extends Controller
 
         $api_token = $this->generateJwtToken($user);
         $user->api_token = $api_token;
-
+        return ['success' => false, 'message' => $user];
         if ($user->save()) {
             return ['success' => true, 'message' => 'Регистрация прошла успешно!', 'api_token' => $user->api_token, 'user' => $user];
         } else {
