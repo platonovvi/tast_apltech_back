@@ -23,7 +23,6 @@ class UserController extends Controller
         try {
             $payload = JWT::decode($token, new Key($secretKey, 'HS256'));
             $userId = $payload->sub;
-            return ['success' => true, 'user' => $userId];
             $user = User::findOne(['id' => $userId]);
 
             //$user = User::findOne(['api_token' => $token]);
