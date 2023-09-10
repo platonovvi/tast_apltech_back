@@ -87,6 +87,20 @@ class UserController extends Controller
 
         $token = str_replace('Bearer ', '', $token);
 
+        $secretKey = getenv('SECRET_KEY'); // Получение секретного ключа из переменной окружения
+
+        try {
+            $payload = \Firebase\JWT\JWT::decode($token, $secretKey, ['HS256']);
+        } catch (\Firebase\JWT\ExpiredException $e) {
+            return ['success' => false, 'message' => 'Истек срок действия токена'];
+        } catch (\Firebase\JWT\SignatureInvalidException $e) {
+            return ['success' => false, 'message' => 'Неверная подпись токена'];
+        } catch (\Exception $e) {
+            return ['success' => false, 'message' => 'Неверный токен. Пользователь не аутентифицирован'];
+        }
+
+        $token = str_replace('Bearer ', '', $token);
+
         // Проверка подписи токена с использованием секретного ключа
         $secretKey = 'ваш_секретный_ключ_здесь'; // Получите секретный ключ из вашей базы данных или конфигурационного файла
 
