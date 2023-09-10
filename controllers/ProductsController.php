@@ -30,12 +30,6 @@ class ProductsController extends Controller
 
     public function actionCreate()
     {
-        $jwtData = Yii::$app->getRequest()->getHeaders()->get('jwtData');
-        if ($jwtData && isset($jwtData['success'])) {
-            if (!$jwtData['success']) {
-                return ['success' => false, 'message' => $jwtData['success']];
-            }
-        }
         $request = Yii::$app->getRequest()->getRawBody();
         $postData = json_decode($request, true);
 
