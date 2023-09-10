@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Response;
 use yii\web\Request;
 use app\models\Product;
@@ -12,6 +13,38 @@ use app\models\User;
 
 class ProductsController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'jwtFilter' => [
+                'class' => AccessControl::class,
+                'only' => ['actionCreate'],
+                'rules' => [
+                    [
+                        'actions' => ['actionCreate'],
+                        'allow' => true,
+                        'matchCallback' => function ($rule, $action) {
+                            $token = Yii::$app->getRequest()->getHeaders()->get('Authorization');
+                            if (!$token) {
+                                return false;
+                            }
+
+                            $token = str_replace('Bearer ', '', $token);
+                            $secretKey = getenv('SECRET_KEY_JWT');
+
+                            try {
+                                $payload = JWT::decode($token, new Key($secretKey, 'HS256'));
+                                $user = User::findOne(['id' => $payload->sub]);
+                                return $user !== null;
+                            } catch (\Exception $e) {
+                                return false;
+                            }
+                        },
+                    ],
+                ],
+            ],
+        ];
+    }
     public function actionGetProducts(): Response
     {
         $query = Product::find()->asArray()->all();
