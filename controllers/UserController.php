@@ -14,28 +14,26 @@ class UserController extends Controller
     public function actionAuth()
     {
         $token = Yii::$app->getRequest()->getHeaders()->get('Authorization');
-        if (!$token) {
-            return ['success' => false, 'message' => 'Отсутствует заголовок Authorization с токеном'];
-        }
-
         $token = str_replace('Bearer ', '', $token);
-        $secretKey = getenv('SECRET_KEY_JWT');
-        try {
-            $payload = JWT::decode($token, new Key($secretKey, 'HS256'));
-            $userId = $payload->sub;
-            $user = User::findOne(['id' => $userId]);
-            
-            if ($user) {
-                return ['success' => true, 'user' => $user];
-            } else {
-                return ['success' => false, 'message' => 'Пользователь не найден'];
+        if ($token) {
+            $secretKey = getenv('SECRET_KEY_JWT');
+            try {
+                $payload = JWT::decode($token, new Key($secretKey, 'HS256'));
+                $userId = $payload->sub;
+                $user = User::findOne(['id' => $userId]);
+
+                if ($user) {
+                    return ['success' => true, 'user' => $user];
+                } else {
+                    return ['success' => false, 'message' => 'Пользователь не найден'];
+                }
+            } catch (\Firebase\JWT\ExpiredException $e) {
+                return ['success' => false, 'message' => 'Срок действия сеанса истёк, авторизуйтесь заново'];
+            } catch (\Firebase\JWT\SignatureInvalidException $e) {
+                return ['success' => false, 'message' => 'Неверная подпись токена'];
+            } catch (\Exception $e) {
+                return ['success' => false, 'message' => 'Неверный токен. Пользователь не аутентифицирован'];
             }
-        } catch (\Firebase\JWT\ExpiredException $e) {
-            return ['success' => false, 'message' => 'Срок действия сеанса истёк, авторизуйтесь заново'];
-        } catch (\Firebase\JWT\SignatureInvalidException $e) {
-            return ['success' => false, 'message' => 'Неверная подпись токена'];
-        } catch (\Exception $e) {
-            return ['success' => false, 'message' => 'Неверный токен. Пользователь не аутентифицирован'];
         }
     }
 
@@ -53,7 +51,6 @@ class UserController extends Controller
         // Сравниваем пароль пользователя с переданным паролем
         if (Yii::$app->security->validatePassword($password, $user->password)) {
             $token = $this->generateJwtToken($user);
-            $user->api_token = $token;
             $user->save();
             return ['success' => true, 'api_token' => $token, 'user' => $user];
         } else {
