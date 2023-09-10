@@ -80,6 +80,7 @@ class UserController extends Controller
 
     public function actionAuth()
     {
+        return ['success' => false, 'message' => 'Неверный токен. Пользователь не аутентифицирован'];
         $token = Yii::$app->getRequest()->getHeaders()->get('Authorization');
         if (!$token) {
             return ['success' => false, 'message' => 'Отсутствует заголовок Authorization с токеном'];
