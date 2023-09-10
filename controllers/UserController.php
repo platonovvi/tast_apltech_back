@@ -13,14 +13,25 @@ class UserController extends Controller
     public function actionAuth()
     {
         $token = Yii::$app->getRequest()->getHeaders()->get('Authorization');
+
         if (!$token) {
             return ['success' => false, 'message' => 'Отсутствует заголовок Authorization с токеном'];
         }
+
         $token = str_replace('Bearer ', '', $token);
-        $secretKey = getenv('SECRET_KEY');
-        $algorithm = 'HS256';
+        $secretKey = getenv('SECRET_KEY_JWT');
+
         try {
-            $payload = \Firebase\JWT\JWT::decode($token, $secretKey, $algorithm);
+            // Попробуйте декодировать токен
+            $payload = \Firebase\JWT\JWT::decode($token, $secretKey, ['HS256']);
+
+            // Проверьте, что токен успешно декодирован
+            if ($payload) {
+                // Верните успешный результат и информацию о пользователе из полезной нагрузки
+                return ['success' => true, 'user' => $payload];
+            } else {
+                return ['success' => false, 'message' => 'Неверный токен. Пользователь не аутентифицирован'];
+            }
         } catch (\Firebase\JWT\ExpiredException $e) {
             return ['success' => false, 'message' => 'Истек срок действия токена'];
         } catch (\Firebase\JWT\SignatureInvalidException $e) {
@@ -28,8 +39,6 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return ['success' => false, 'message' => 'Неверный токен. Пользователь не аутентифицирован'];
         }
-
-        return ['success' => true, 'user' => $payload];
     }
 
     public function actionLogin()
