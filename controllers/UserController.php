@@ -22,9 +22,7 @@ class UserController extends Controller
         $secretKey = getenv('SECRET_KEY_JWT');
         try {
             $payload = JWT::decode($token, new Key($secretKey, 'HS256'));
-            return ['success' => true, 'user' => $payload];
-            $apiToken = $payload->api_token;
-            $user = User::findOne(['api_token' => $apiToken]);
+            $user = User::findOne(['api_token' => $token]);
             if ($user) {
                 return ['success' => true, 'user' => $user];
             } else {
