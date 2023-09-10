@@ -21,7 +21,7 @@ class UserController extends Controller
         $secretKey = getenv('SECRET_KEY_JWT');
         $algorithm = 'HS256';
         try {
-            $payload = \Firebase\JWT\JWT::decode($token, $secretKey, $algorithm);
+            $payload = JWT::decode($token, $secretKey, $algorithm);
             return ['success' => false, 'message' => $payload];
             // Проверьте, что токен успешно декодирован
             if ($payload) {
