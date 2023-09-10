@@ -35,11 +35,11 @@ class Controller extends BaseController
                         'matchCallback' => function ($rule, $action) {
                             // Ваш код проверки JWT токена
                             $token = Yii::$app->getRequest()->getHeaders()->get('Authorization');
+
+                            $token = str_replace('Bearer ', '', $token);
                             if (!$token) {
                                 return false;
                             }
-
-                            $token = str_replace('Bearer ', '', $token);
                             $secretKey = getenv('SECRET_KEY_JWT');
 
                             try {
@@ -47,7 +47,7 @@ class Controller extends BaseController
                                 $user = User::findOne(['id' => $payload->sub]);
                                 return $user !== null;
                             } catch (\Exception $e) {
-                                return false;
+                                return ['success' => false, 'message' => 'Нет доступа'];
                             }
                         },
                     ],
