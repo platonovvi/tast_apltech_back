@@ -112,12 +112,11 @@ class UserController extends Controller
     private function generateJwtToken($user)
     {
         $secretKey = getenv('SECRET_KEY_JWT');
-        return ['success' => false, 'message' => $secretKey];
-        /*$payload = [
+        $payload = [
             'sub' => $user->id,
             'exp' => time() + 3600, // Время истечения токена (1 час)
         ];
 
-        return JWT::encode($payload, $secretKey, 'HS256');*/
+        return JWT::encode($payload, $secretKey, 'HS256');
     }
 }
