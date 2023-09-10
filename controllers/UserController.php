@@ -99,8 +99,7 @@ class UserController extends Controller
         $user->username = $username;
         $user->password = Yii::$app->security->generatePasswordHash($password);
 
-        $secretKey = getenv('SECRET_KEY_JWT');
-        $api_token = $this->generateJwtToken($user, $secretKey);
+        $api_token = $this->generateJwtToken($user);
         $user->api_token = $api_token;
 
         if ($user->save()) {
@@ -110,14 +109,15 @@ class UserController extends Controller
         }
     }
 
-    private function generateJwtToken($user, $secretKey)
+    private function generateJwtToken($user)
     {
-        return ['success' => false, 'message' => $user];
-        $payload = [
+        $secretKey = getenv('SECRET_KEY_JWT');
+        return ['success' => false, 'message' => $secretKey];
+        /*$payload = [
             'sub' => $user->id,
             'exp' => time() + 3600, // Время истечения токена (1 час)
         ];
 
-        return JWT::encode($payload, $secretKey, 'HS256');
+        return JWT::encode($payload, $secretKey, 'HS256');*/
     }
 }
