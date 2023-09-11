@@ -37,7 +37,7 @@ class Controller extends BaseController
                             $token = Yii::$app->getRequest()->getHeaders()->get('Authorization');
                             if (!$token) {
                                 Yii::$app->response->setStatusCode(401); // Устанавливаем статус "Нет авторизации"
-                                Yii::$app->response->data = ['message' => 'Нет доступа']; // Возвращаем ошибку JSON
+                                Yii::$app->response->data = ['success' => false, 'message' => 'Нет доступа']; // Возвращаем ошибку JSON
                                 Yii::$app->end(); // Завершаем выполнение
                             }
 
@@ -50,7 +50,7 @@ class Controller extends BaseController
                                 return $user !== null;
                             } catch (\Exception $e) {
                                 Yii::$app->response->setStatusCode(401); // Устанавливаем статус "Нет авторизации"
-                                Yii::$app->response->data = ['message' => 'Нет доступа']; // Возвращаем ошибку JSON
+                                Yii::$app->response->data = ['success' => false, 'message' => 'Нет доступа']; // Возвращаем ошибку JSON
                                 Yii::$app->end(); // Завершаем выполнение
                             }
                         },
