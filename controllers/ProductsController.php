@@ -70,8 +70,6 @@ class ProductsController extends Controller
         $status = $postData['status'];
         $description = $postData['description'];
 
-        $product = new Product();
-
         $product->name = $name;
         $product->category_name = $category_name;
         $product->brand_name = $brand_name;
