@@ -43,7 +43,10 @@ class ProductsController extends Controller
 
         // Объединение данных
         $combinedData = array_merge($dbProducts, $jsonData);
-        return $this->asJson(['success' => true, 'products' => $combinedData]);
+        $min_price = $combinedData->min('price');
+        $max_price = $combinedData->max('price');
+        $result = [$min_price, $max_price];
+        return $this->asJson(['success' => true, 'products' => $result]);
     }
 
     public function actionCreate()
