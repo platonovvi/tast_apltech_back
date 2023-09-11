@@ -57,7 +57,7 @@ class ProductsController extends Controller
     {
         $request = Yii::$app->getRequest()->getRawBody();
         $postData = json_decode($request, true);
-
+        return ['success' => false, 'message' => $id];
         $product = Product::findOne($id);
 
         if (!$product) {
