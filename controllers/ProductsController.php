@@ -37,7 +37,7 @@ class ProductsController extends Controller
         $jsonFile = Yii::getAlias('@webroot/external-data.json');
         $jsonData = json_decode(file_get_contents($jsonFile), true);
 
-//Фильтрую входные данные из JSON по brand_name
+        //Фильтрую входные данные из JSON по brand_name
         $jsonData = array_filter($jsonData, function ($product) use ($name) {
             return isset($product['brand_name']) && strtolower($product['brand_name']) === $name;
         });
@@ -50,11 +50,11 @@ class ProductsController extends Controller
         });
         $minPrice = reset($combinedData);
         $maxPrice = end($combinedData);
-        //$result = ['min' => $minPrice, 'max' => $maxPrice];
         $result = [
             ["min" => $minPrice],
             ["max" => $maxPrice],
         ];
+
         return $this->asJson(['success' => true, 'products' => $result]);
     }
 
