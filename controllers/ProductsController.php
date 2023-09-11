@@ -28,7 +28,7 @@ class ProductsController extends Controller
     {
         // Получение данных из БД
         $dbProducts = Product::find()->all();
-
+        return $this->asJson(['success' => true, 'products' => '123123']);
         // Загрузка данных из статического JSON файла
         $jsonFile = Yii::getAlias('@webroot/data/external-data.json'); // Укажите путь к файлу
         $jsonData = json_decode(file_get_contents($jsonFile), true);
