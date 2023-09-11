@@ -78,7 +78,7 @@ class ProductsController extends Controller
         $product->status = $status;
         $product->description = $description;
         if ($product->save()) {
-            return ['success' => true, 'message' => 'Товар создан!'];
+            return ['success' => true, 'message' => 'Товар изменён!'];
         } else {
             return ['success' => false, 'message' => 'Ошибка при создании пользователя'];
         }

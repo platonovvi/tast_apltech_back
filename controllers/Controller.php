@@ -33,10 +33,12 @@ class Controller extends BaseController
                         'actions' => ['create', 'update'],
                         'allow' => true,
                         'matchCallback' => function ($rule, $action) {
-                            // Ваш код проверки JWT токена
+                            // Проверка JWT токена
                             $token = Yii::$app->getRequest()->getHeaders()->get('Authorization');
                             if (!$token) {
-                                return false;
+                                Yii::$app->response->setStatusCode(401); // Устанавливаем статус "Нет авторизации"
+                                Yii::$app->response->data = ['message' => 'Нет доступа']; // Возвращаем ошибку JSON
+                                Yii::$app->end(); // Завершаем выполнение
                             }
 
                             $token = str_replace('Bearer ', '', $token);
@@ -47,7 +49,9 @@ class Controller extends BaseController
                                 $user = User::findOne(['id' => $payload->sub]);
                                 return $user !== null;
                             } catch (\Exception $e) {
-                                return false;
+                                Yii::$app->response->setStatusCode(401); // Устанавливаем статус "Нет авторизации"
+                                Yii::$app->response->data = ['message' => 'Нет доступа']; // Возвращаем ошибку JSON
+                                Yii::$app->end(); // Завершаем выполнение
                             }
                         },
                     ],
