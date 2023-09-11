@@ -27,9 +27,8 @@ class ProductsController extends Controller
     public function actionFindBrand($name): Response
     {
         // Получение данных из БД
-        return $this->asJson(['success' => true, 'products' => $name]);
         $dbProducts = Product::find()->all();
-
+        return $this->asJson(['success' => true, 'products' => $dbProducts]);
         // Загрузка данных из статического JSON файла
         $jsonFile = Yii::getAlias('@webroot/external-data.json');
 
