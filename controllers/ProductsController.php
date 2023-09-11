@@ -75,6 +75,7 @@ class ProductsController extends Controller
         $product->rrp_price = $rrp_price;
         $product->status = $status;
         $product->description = $description;
+        return ['success' => true, 'message' => 'Товар создан!'];
         if ($product->save()) {
             return ['success' => true, 'message' => 'Товар создан!'];
         } else {
