@@ -58,6 +58,12 @@ class ProductsController extends Controller
         $request = Yii::$app->getRequest()->getRawBody();
         $postData = json_decode($request, true);
 
+        $product = Product::findOne($id);
+
+        if (!$product) {
+            return ['success' => false, 'message' => 'Товар не найден'];
+        }
+
         $name = $postData['name'];
         $category_name = $postData['category_name'];
         $brand_name = $postData['brand_name'];
@@ -75,7 +81,6 @@ class ProductsController extends Controller
         $product->rrp_price = $rrp_price;
         $product->status = $status;
         $product->description = $description;
-        return ['success' => true, 'message' => 'Товар создан!'];
         if ($product->save()) {
             return ['success' => true, 'message' => 'Товар создан!'];
         } else {
