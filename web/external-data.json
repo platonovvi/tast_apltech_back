@@ -1,12 +1,26 @@
 [
   {
-    "id": 1,
-    "name": "Product A",
-    "price": 10.99
+    "id": 100,
+    "name": "Серверный процессор Dell Xeon Silver 4210 338-BSDG (Intel, 10, 2.2 ГГц, 13.75)",
+    "category_name": "Серверные процессоры",
+    "brand_name": "Dell",
+    "price": 200000,
+    "rrp_price": 200005,
+    "status": 2,
+    "description": "Dell Intel Xeon Silver 4210 2.2G, 10C/20T, 9.6GT/s, 13.75M Cache, Turbo, HT (85W) DDR4-2400, HeatSink not included",
+    "created_at": "2023-09-11 01:00:39",
+    "updated_at": null
   },
   {
-    "id": 2,
-    "name": "Product B",
-    "price": 15.99
+    "id": 101,
+    "name": "Коврик для мыши A4Tech Fstyler FP20-Grey",
+    "category_name": "Коврики для мыши",
+    "brand_name": "A4Tech",
+    "price": 1208,
+    "rrp_price": 1100,
+    "status": 1,
+    "description": "Коврик A4tech Fstyler FP20-Grey <25*20*0.2cm, тканевое покрытие>",
+    "created_at": "2023-09-11 01:00:39",
+    "updated_at": null
   }
 ]
