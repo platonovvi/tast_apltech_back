@@ -26,17 +26,23 @@ class ProductsController extends Controller
 
     public function actionFindBrand($name): Response
     {
-        // Получение данных из БД
-        $dbProducts = Product::find()->all();
+        $name = strtolower($name);
+        // Полученаю данных из БД с фильтрацие по brand_name
+        $dbProducts = Product::find()
+            ->where(['ILIKE', 'brand_name', $name])
+            ->all();
+
         // Загрузка данных из статического JSON файла
         $jsonFile = Yii::getAlias('@webroot/external-data.json');
         $jsonData = json_decode(file_get_contents($jsonFile), true);
+
+//Фильтрую входные данные из JSON по brand_name
+        $jsonData = array_filter($jsonData, function ($product) use ($name) {
+            return isset($product['brand_name']) && strtolower($product['brand_name']) === $name;
+        });
+
         // Объединение данных
         $combinedData = array_merge($dbProducts, $jsonData);
-        // Фильтруем данные по полю 'brand_name'
-        $combinedData = array_filter($combinedData, function ($product) use ($name) {
-            return isset($product['brand_name']) && $product['brand_name'] === $name;
-        });
         return $this->asJson(['success' => true, 'products' => $combinedData]);
     }
 
