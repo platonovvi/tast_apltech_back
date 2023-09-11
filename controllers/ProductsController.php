@@ -50,7 +50,7 @@ class ProductsController extends Controller
         });
         $minPrice = reset($combinedData);
         $maxPrice = end($combinedData);
-        $result = [$minPrice, $maxPrice];
+        $result = ['min' => $minPrice, 'max' => $maxPrice];
         return $this->asJson(['success' => true, 'products' => $result]);
     }
 
