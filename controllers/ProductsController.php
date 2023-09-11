@@ -30,8 +30,9 @@ class ProductsController extends Controller
         $dbProducts = Product::find()->all();
         // Загрузка данных из статического JSON файла
         $jsonFile = Yii::getAlias('@webroot/external-data.json');
+        return ['success' => true, 'message' => $jsonFile];
         $jsonData = json_decode(file_get_contents($jsonFile), true);
-        return ['success' => true, 'products' => $jsonData];
+        return $this->asJson(['success' => true, 'products' => $jsonData]);
 
         // Объединение данных
         $combinedData = array_merge($dbProducts, $jsonData);
