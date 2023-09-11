@@ -22,7 +22,7 @@ class m210828_123456_create_products_table extends Migration
             'status' => $this->integer()->notNull()->comment('Статус (1 - В наличии, 2 - Под заказ)'),
             'description' => $this->string()->comment('Описание товара'),
             'created_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
-            'updated_at' => $this->timestamp(),
+            'updated_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
         ]);
     }
     /**

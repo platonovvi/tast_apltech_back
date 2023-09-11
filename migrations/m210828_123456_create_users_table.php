@@ -17,7 +17,7 @@ class m210828_123456_create_users_table extends Migration
             'username' => $this->string()->notNull()->unique()->comment('Логин пользователя'),
             'password' => $this->string()->notNull()->comment('Пароль'),
             'created_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
-            'updated_at' => $this->timestamp(),
+            'updated_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
         ]);
     }
 
