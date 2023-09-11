@@ -27,7 +27,7 @@ class ProductsController extends Controller
     public function actionFindBrand($name): Response
     {
         // Получение данных из БД
-        return ['success' => true, 'message' => $name];
+        return $this->asJson(['success' => true, 'products' => $name]);
         $dbProducts = Product::find()->all();
 
         // Загрузка данных из статического JSON файла
