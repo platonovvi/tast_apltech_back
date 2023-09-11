@@ -24,6 +24,24 @@ class ProductsController extends Controller
         return $this->asJson(['success' => true, 'product' => $query]);
     }
 
+    public function actionFindBrand($name): Response
+    {
+        // Получение данных из БД
+        $dbProducts = Product::find()->all();
+
+        // Загрузка данных из статического JSON файла
+        $jsonFile = Yii::getAlias('@webroot/data/external-data.json'); // Укажите путь к файлу
+        $jsonData = json_decode(file_get_contents($jsonFile), true);
+
+        // Объединение данных
+        $combinedData = array_merge($dbProducts, $jsonData);
+
+        // Возвращаем объединенные данные как JSON
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        return $this->asJson(['success' => true, 'products' => $combinedData]);
+    }
+
     public function actionCreate()
     {
         $request = Yii::$app->getRequest()->getRawBody();

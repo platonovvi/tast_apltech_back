@@ -44,6 +44,7 @@ $config = [
                 'product/<id:\d+>' => 'products/get-product',
                 'product/create' => 'products/create',
                 'product/update/<id:\d+>' => 'products/update',
+                'product/brand/<name:[\w-]+>' => 'products/find-brand',
                 'user/login' => 'user/login',
                 'user/logout' => 'user/logout',
                 'user/signup' => 'user/signup',
