@@ -45,8 +45,8 @@ class ProductsController extends Controller
         // Объединение данных
         $combinedData = array_merge($dbProducts, $jsonData);
         //Отбираем минимальный и максимальный по цене товары
-        return $this->asJson(['success' => true, 'products' => $combinedData]);
         $min_price = ArrayHelper::min($combinedData, 'price');
+        return $this->asJson(['success' => true, 'products' => $min_price]);
         $max_price = ArrayHelper::max($combinedData, 'price');
         $result = [$min_price, $max_price];
         return $this->asJson(['success' => true, 'products' => $result]);
